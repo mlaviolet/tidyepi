@@ -74,7 +74,7 @@ reshape_for_SIR <- function(df, strata, split_var, study_group, n, pop) {
 #' library(dplyr)
 #' sir_by_year <- cancer %>%
 #'   group_by(Year) %>%
-#'   do(reshape_for_SIR(., agegroup, Sex, "Female", n, pop)) %>%
+#'   do(reshape_for_SIR(., agegroup, Sex, "Male", n, pop)) %>%
 #'   do(indirect_adjust(., study_count, study_pop, ref_count, ref_pop))
 indirect_adjust <- function(df, study_count, study_pop, ref_count, ref_pop,
                            places = 2, level = 95) {
