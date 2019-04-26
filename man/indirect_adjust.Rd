@@ -44,7 +44,7 @@ library(tidyepi)
 library(dplyr)
 sir_by_year <- cancer \%>\%
   group_by(Year) \%>\%
-  do(reshape_for_SIR(., agegroup, Sex, "Female", n, pop)) \%>\%
+  do(reshape_for_SIR(., agegroup, Sex, "Male", n, pop)) \%>\%
   do(indirect_adjust(., study_count, study_pop, ref_count, ref_pop))
 }
 \references{
