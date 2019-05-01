@@ -48,7 +48,7 @@ reshape_for_SIR <- function(df, strata, split_var, study_group, n, pop) {
 #' @param study_pop Number of person-years at risk in study group.
 #' @param ref_count Number of events in referent group.
 #' @param ref_pop Number of person-years at risk in referent group.
-#' @param places Number of decimal places in SIR's and confidence intervals.
+#' @param places Number of decimal places in expected counts, SIR's and confidence intervals.
 #' @param level Confidence level as percentage.
 #' @return A data table with the following fields:
 #' \describe{
@@ -91,7 +91,7 @@ indirect_adjust <- function(df, study_count, study_pop, ref_count, ref_pop,
     mutate(sir = observed / expected,
            sir_lci = qgamma((100 - level) / 200, observed) / expected,
            sir_uci = qgamma((100 + level) / 200, observed + 1) / expected) %>%
-    mutate_at("expected", round, 1) %>%
+    mutate_at("expected", round, places) %>%
     mutate_at(vars(starts_with("sir")), round, places) %>%
     select(observed, everything())
   }
