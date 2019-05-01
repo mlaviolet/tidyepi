@@ -43,3 +43,7 @@ cancer \%>\%
   do(crude_rate(., n, pop))
 
 }
+\references{
+Garwood F (1936) Fiducial limits for the Poisson distribution,
+ Biometrika 28:437-442.
+}

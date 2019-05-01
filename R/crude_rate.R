@@ -15,7 +15,10 @@
 #'   \item{\code{rate_lci}}{Lower confidence limit for rate.}
 #'   \item{\code{rate_uci}}{Upper confidence limit for rate.}
 #'   }
-#' 
+#'   
+#' @references Garwood F (1936) Fiducial limits for the Poisson distribution,
+#'  Biometrika 28:437-442.
+#'  
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @export
