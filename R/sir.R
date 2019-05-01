@@ -91,8 +91,9 @@ indirect_adjust <- function(df, study_count, study_pop, ref_count, ref_pop,
     mutate(sir = observed / expected,
            sir_lci = qgamma((100 - level) / 200, observed) / expected,
            sir_uci = qgamma((100 + level) / 200, observed + 1) / expected) %>%
-    mutate_at("expected", round, places) %>%
-    mutate_at(vars(starts_with("sir")), round, places) %>%
+    # mutate_at("expected", round, places) %>%
+    mutate_at(vars(expected, starts_with("sir")), 
+              function(x) round(x, places)) %>%
     select(observed, everything())
   }
 

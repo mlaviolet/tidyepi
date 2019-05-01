@@ -7,6 +7,7 @@
 #' @param std_pop Vector of standard population. Can be totals, proportions, or percentages.
 #' @param base Multiplier; e.g. per 100,000 population.
 #' @param level Confidence level expressed as percentage.
+#' @param places Decimal places to round results.
 #'
 #' @return A data table with the following fields:
 #' \describe{
@@ -49,7 +50,7 @@
 #'   do(direct_adjust(., agegroup, n, pop, seer_pop))
 #'
 direct_adjust <- function(df, agegroup, events, person_yrs, std_pop,
-                          base = 100000, level = 95) {
+                          base = 100000, level = 95, places = 1) {
   J <- length(std_pop) # correction term for computing rates and variances
   alpha_lci <- (100 - level) / 200
   alpha_uci <- (100 + level) / 200
@@ -94,7 +95,7 @@ direct_adjust <- function(df, agegroup, events, person_yrs, std_pop,
                             scale = adj_rate_var_corr / adj_rate_corr)) %>%
     select(-matches("(corr|var)$")) %>%
     mutate_at(vars(matches("^(adj|crude)")),
-              function(x) round(base * x, 1)) %>%
+              function(x) round(base * x, places)) %>%
     select(events, person_yrs, matches("^(adj|crude)"))
     # setNames(c("Events", "Person-years", "Crude rate",
     #             paste0("Crude rate ", level, "% LCI"),
@@ -104,4 +105,5 @@ direct_adjust <- function(df, agegroup, events, person_yrs, std_pop,
     #             paste0("Adjusted rate ", level, "% LCI"),
     #             paste0("Adjusted rate ", level, "% UCI")))
   }
+
 # need usethis::use_tidy_eval()

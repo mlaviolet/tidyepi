@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+data-raw/*.txt
+data-raw/*.pdf
+man/*.RData
+

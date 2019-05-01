@@ -18,7 +18,7 @@ indirect_adjust(df, study_count, study_pop, ref_count, ref_pop,
 
 \item{ref_pop}{Number of person-years at risk in referent group.}
 
-\item{places}{Number of decimal places in SIR's and confidence intervals.}
+\item{places}{Number of decimal places in expected counts, SIR's and confidence intervals.}
 
 \item{level}{Confidence level as percentage.}
 }
