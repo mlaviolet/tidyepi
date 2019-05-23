@@ -39,7 +39,7 @@ reshape_for_SIR <- function(df, strata, split_var, study_group, n, pop) {
                "study_count", "study_pop", "ref_count", "ref_pop"))
   }
 
-#' indirect_adjust: Indirect adjustment
+#' Indirect adjustment
 #'
 #' Find standardized incidence ratios and standardized mortality ratios with
 #' indirect adjustment.
