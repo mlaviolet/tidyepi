@@ -4,5 +4,7 @@
 .Ruserdata
 data-raw/*.txt
 data-raw/*.pdf
+data-raw/*.png
 man/*.RData
+
 
