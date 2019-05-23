@@ -50,11 +50,24 @@ makeVector <- function(x, y) {
     setNames(y)
   }
 
+# SEER 19 age groups
+seer_pop <- std_pop %>% 
+  group_by(seer) %>% 
+  summarize(pop = sum(master)) %>% 
+  pull(pop) %>% 
+  setNames(c("00", "01-04", "05-09", "10-14", "15-19", 
+             "20-24", "25-29", "30-34", "35-39", "40-44", 
+             "45-49", "50-54", "55-59", "60-64", "65-69", 
+             "70-74", "75-79", "80-84", "85+"))
+  
+
 dist_lst <- map2(sprintf("%02d", 1:22), names_lst,  makeVector)
-dist_lst <- c(list(master_pop = master_pop), dist_lst)
-names(dist_lst) <- c("master_pop", paste0("dist_", sprintf("%02d", 1:22)))
+dist_lst <- c(list(master_pop, seer_pop), dist_lst)
+names(dist_lst) <- c("master_pop", "seer_pop",
+                     paste0("dist_", sprintf("%02d", 1:22)))
 lapply(dist_lst, sum)
 
+# usethis::use_data(dist_lst, overwrite = TRUE)
 
 
 # LOOKS GOOD
