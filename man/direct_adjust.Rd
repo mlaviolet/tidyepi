@@ -46,12 +46,9 @@ Directly age-adjusted rates
 # using standard SEER age groups 0, 1-4, 5-9, 10-14, 15-19, ..., 80-84,
 library(tidyepi)
 library(dplyr)
-seer_pop <- c(3795, 15192, 19920, 20057, 19820, 18257,
-             17722, 19511, 22180, 22479, 19806, 17224,
-             13307, 10654,  9410,  8726,  7415,  4900, 4259)
 cancer_by_year <- cancer \%>\%
   group_by(Year, Sex) \%>\%
-  do(direct_adjust(., agegroup, n, pop, seer_pop))
+  do(direct_adjust(., agegroup, n, pop, dist_lst$seer_pop))
 
 }
 \references{
