@@ -64,6 +64,8 @@ cancer <- read_tsv(here("data-raw",
          agegroup = sub("^1$", "0", agegroup),
          agegroup = fct_inorder(agegroup)) %>%
   arrange(Year, Sex, agegroup)
+levels(cancer$agegroup)[1:3] <- c("00", "01-04", "05-09")
+
 
 seer_weight <- data.frame(
   agegroup = levels(cancer_dat$agegroup),
