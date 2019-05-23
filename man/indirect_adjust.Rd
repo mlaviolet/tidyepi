@@ -2,7 +2,7 @@
 % Please edit documentation in R/sir.R
 \name{indirect_adjust}
 \alias{indirect_adjust}
-\title{indirect_adjust: Indirect adjustment}
+\title{Indirect adjustment}
 \usage{
 indirect_adjust(df, study_count, study_pop, ref_count, ref_pop,
   places = 2, level = 95)
