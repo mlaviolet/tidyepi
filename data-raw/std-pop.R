@@ -36,7 +36,7 @@ names_lst <-
        names_19 = c("00-04", "05-11", "12-17"),
        names_20 = c("00-17", "18-44", "45-64"),
        names_21 = c("05-17", "18-44", "45-64"),
-       names_22 <- c("18-24", "25-34", "35-44", "45-64"))  
+       names_22 = c("18-24", "25-34", "35-44", "45-64"))  
 
 # create names vector of populations of modified age groupings
 makeVector <- function(x, y) {
@@ -59,17 +59,24 @@ seer_pop <- std_pop %>%
              "20-24", "25-29", "30-34", "35-39", "40-44", 
              "45-49", "50-54", "55-59", "60-64", "65-69", 
              "70-74", "75-79", "80-84", "85+"))
+
+# five-year, 18 age groups
+five_year_pop <- std_pop %>% 
+  group_by(five_year) %>% 
+  summarize(pop = sum(master)) %>% 
+  pull(pop) %>% 
+  setNames(c("00-04", "05-09", "10-14", "15-19", "20-24", "25-29", 
+             "30-34", "35-39", "40-44", "45-49", "50-54", "55-59", 
+             "60-64", "65-69", "70-74", "75-79", "80-84", "85+"))
   
-dist_lst <- map2(sprintf("%02d", 1:22), names_lst,  makeVector)
-dist_lst <- c(list(master_pop, seer_pop), dist_lst)
-names(dist_lst) <- c("master_pop", "seer_pop",
+std_pop_list <- map2(sprintf("%02d", 1:22), names_lst,  makeVector)
+std_pop_list <- c(list(master_pop, seer_pop, five_year_pop), std_pop_list)
+names(std_pop_list) <- c("master_pop", "seer_pop", "five_year_pop",
                      paste0("dist_", sprintf("%02d", 1:22)))
-lapply(dist_lst, sum)
+lapply(std_pop_list, sum)
 
-# usethis::use_data(dist_lst, overwrite = TRUE)
+# usethis::use_data(std_pop_list, overwrite = TRUE)
 
-
-# LOOKS GOOD
 
 
 
