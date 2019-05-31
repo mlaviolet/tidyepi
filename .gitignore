@@ -5,6 +5,9 @@
 data-raw/*.txt
 data-raw/*.pdf
 data-raw/*.png
+data-raw/*.dic
+data-raw/*.si
+data-raw/*.sim
 man/*.RData
 
 
