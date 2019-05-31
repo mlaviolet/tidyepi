@@ -2,7 +2,7 @@
 % Please edit documentation in R/crude_rate.R
 \name{crude_rate}
 \alias{crude_rate}
-\title{Crude or age-specific rates}
+\title{Crude or age-specific rates.}
 \usage{
 crude_rate(df, events, person_yrs, base = 1e+05, level = 95,
   places = 1)
@@ -31,7 +31,7 @@ A data table with the following fields:
   }
 }
 \description{
-Crude or age-specific rates
+Crude or age-specific rates.
 }
 \examples{
 # US cancer rates by year

@@ -2,7 +2,7 @@
 % Please edit documentation in R/direct_adjust.R
 \name{direct_adjust}
 \alias{direct_adjust}
-\title{Directly age-adjusted rates}
+\title{Directly age-adjusted rates.}
 \usage{
 direct_adjust(df, agegroup, events, person_yrs, std_pop, base = 1e+05,
   level = 95, places = 1)
@@ -39,7 +39,7 @@ A data table with the following fields:
   }
 }
 \description{
-Directly age-adjusted rates
+Directly age-adjusted rates.
 }
 \note{
 Confidence limits are computed using the method of Tiwari et al.
