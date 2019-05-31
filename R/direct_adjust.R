@@ -48,7 +48,7 @@
 #'
 direct_adjust <- function(df, agegroup, events, person_yrs, std_pop,
                           base = 100000, level = 95, places = 1) {
-  J <- length(std_pop) # correction term for computing rates and variances
+  J <- 1 / length(std_pop) # correction term for computing rates and variances
   alpha_lci <- (100 - level) / 200
   alpha_uci <- (100 + level) / 200
   # make vector of standard population weights into a tibbele for joining
