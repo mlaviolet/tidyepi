@@ -1,4 +1,4 @@
-#' Directly age-adjusted rates
+#' Directly age-adjusted rates.
 #'
 #' @param df A data frame.
 #' @param agegroup Age group or other stratifying variable

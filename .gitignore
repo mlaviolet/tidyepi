@@ -8,6 +8,7 @@ data-raw/*.png
 data-raw/*.dic
 data-raw/*.si
 data-raw/*.sim
+.xlsx
 man/*.RData
 
 

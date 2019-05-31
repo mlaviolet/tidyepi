@@ -1,4 +1,4 @@
-#' Crude or age-specific rates
+#' Crude or age-specific rates.
 #' 
 #' @param df A data frame.
 #' @param events Number of events.
