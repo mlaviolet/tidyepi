@@ -52,9 +52,9 @@ random variable (Poisson).
 # using standard SEER age groups 0, 1-4, 5-9, 10-14, 15-19, ..., 80-84,
 library(tidyepi)
 library(dplyr)
-cancer_by_year <- cancer \%>\%
+cancer_by_year_sex <- cancer \%>\%
   group_by(Year, Sex) \%>\%
-  do(direct_adjust(., agegroup, n, pop, dist_lst$seer_pop))
+  do(direct_adjust(., agegroup, n, pop, std_pop_list$seer_pop))
 
 }
 \references{

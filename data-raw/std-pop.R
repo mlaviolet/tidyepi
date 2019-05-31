@@ -60,7 +60,6 @@ seer_pop <- std_pop %>%
              "45-49", "50-54", "55-59", "60-64", "65-69", 
              "70-74", "75-79", "80-84", "85+"))
   
-
 dist_lst <- map2(sprintf("%02d", 1:22), names_lst,  makeVector)
 dist_lst <- c(list(master_pop, seer_pop), dist_lst)
 names(dist_lst) <- c("master_pop", "seer_pop",
