@@ -41,6 +41,12 @@ A data table with the following fields:
 \description{
 Directly age-adjusted rates
 }
+\note{
+Confidence limits are computed using the method of Tiwari et al.
+(2006). The upper limit is adjusted with a continuity correction prompted 
+by the use of a continuous distribution (gamma) to approximate a discrete 
+random variable (Poisson).
+}
 \examples{
 # US age-adjusted cancer rates by year and sex
 # using standard SEER age groups 0, 1-4, 5-9, 10-14, 15-19, ..., 80-84,
@@ -52,9 +58,12 @@ cancer_by_year <- cancer \%>\%
 
 }
 \references{
-Tiwari RC et al. (2006) Efficient interval estimation for age-
-adjusted cancer rates, Statistical Methods in Medical Research 15:547-569.
+Anderson RN and Rosenberg HM (1998) Age standardization of 
+death rates: Implementation of the year 2000 standard. National Vital 
+Statistics Reports 47(3). Hyattsville, Maryland: National Center 
+for Health Statistics. https://www.cdc.gov/nchs/data/nvsr/nvsr47/nvs47_03.pdf
 
-Garwood F (1936) Fiducial limits for the Poisson distribution,
- Biometrika 28:437-442.
+Tiwari RC et al. (2006) Efficient interval estimation for age-adjusted 
+cancer rates. Statistical Methods in Medical Research 15:547-569. 
+https://www.ncbi.nlm.nih.gov/pubmed/17260923
 }
