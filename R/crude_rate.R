@@ -5,7 +5,7 @@
 #' @param person_yrs Number of person-years at risk.
 #' @param base Multiplier; e.g. per 100,000 population.
 #' @param level Confidence level expressed as percentage.
-#' @param places Decimal places to round results.
+#' @param decimals Decimal places to round results.
 #'
 #' @return A data table with the following fields:
 #' \describe{
@@ -36,7 +36,7 @@
 #'   do(crude_rate(., n, pop))
 #' 
 crude_rate <- function(df, events, person_yrs, base = 100000, level = 95,
-                       places = 1) {
+                       decimals = 1) {
   events <- enquo(events)
   person_yrs <- enquo(person_yrs)
   alpha_lci <- (100 - level) / 200
@@ -46,7 +46,7 @@ crude_rate <- function(df, events, person_yrs, base = 100000, level = 95,
            rate_lci = qgamma(alpha_lci, !!events) / !!person_yrs,
            rate_uci = qgamma(alpha_uci, !!(events) + 1) / !!person_yrs) %>%
     mutate_at(vars(starts_with("rate")),
-              function(x) round(base * x, places))
+              function(x) round(base * x, decimals))
   }
 
 # need usethis::use_tidy_eval()
