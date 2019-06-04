@@ -5,7 +5,7 @@
 \title{Crude or age-specific rates.}
 \usage{
 crude_rate(df, events, person_yrs, base = 1e+05, level = 95,
-  places = 1)
+  decimals = 1)
 }
 \arguments{
 \item{df}{A data frame.}
@@ -18,7 +18,7 @@ crude_rate(df, events, person_yrs, base = 1e+05, level = 95,
 
 \item{level}{Confidence level expressed as percentage.}
 
-\item{places}{Decimal places to round results.}
+\item{decimals}{Decimal places to round results.}
 }
 \value{
 A data table with the following fields:

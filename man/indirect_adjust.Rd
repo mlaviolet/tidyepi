@@ -5,7 +5,7 @@
 \title{Indirect adjustment.}
 \usage{
 indirect_adjust(df, study_count, study_pop, ref_count, ref_pop,
-  places = 2, level = 95)
+  decimal = 2, level = 95)
 }
 \arguments{
 \item{df}{A data frame.}
@@ -18,7 +18,7 @@ indirect_adjust(df, study_count, study_pop, ref_count, ref_pop,
 
 \item{ref_pop}{Number of person-years at risk in referent group.}
 
-\item{places}{Number of decimal places in expected counts, SIR's and confidence intervals.}
+\item{decimal}{Number of decimal places in expected counts, SIR's and confidence intervals.}
 
 \item{level}{Confidence level as percentage.}
 }

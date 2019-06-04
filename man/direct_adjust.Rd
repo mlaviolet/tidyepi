@@ -5,7 +5,7 @@
 \title{Directly age-adjusted rates.}
 \usage{
 direct_adjust(df, agegroup, events, person_yrs, std_pop, base = 1e+05,
-  level = 95, places = 1)
+  level = 95, decimals = 1)
 }
 \arguments{
 \item{df}{A data frame.}
@@ -22,7 +22,7 @@ direct_adjust(df, agegroup, events, person_yrs, std_pop, base = 1e+05,
 
 \item{level}{Confidence level expressed as percentage.}
 
-\item{places}{Decimal places to round results.}
+\item{decimals}{Decimal places to round results.}
 }
 \value{
 A data table with the following fields:
