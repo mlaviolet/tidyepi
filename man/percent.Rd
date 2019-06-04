@@ -4,7 +4,7 @@
 \alias{percent}
 \title{Convert a number to a percentage.}
 \usage{
-percent(x, places = 1)
+percent(x, decimals = 1)
 }
 \arguments{
 \item{x}{A number.}

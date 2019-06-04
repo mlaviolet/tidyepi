@@ -4,7 +4,7 @@
 #' @param decimals Number of decimal places in final result (default = 1).
 #' @return The number expressed as a percentage.
 #' @export
-percent <- function(x, places = 1) round(100 * x, decimals)
+percent <- function(x, decimals = 1) round(100 * x, decimals)
 
 #' Compute complete years between events.
 #' @param begin_date Beginning date (usually birth).
