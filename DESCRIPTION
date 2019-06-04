@@ -7,6 +7,7 @@ Authors@R: person("Michael", "Laviolette", email = "statman54@gmail.com",
 Description: Tools for epidemiology analysis, including age-specific and age-adjusted rates.
 License: GPL-3
 Imports: 
+    lubridate,
     magrittr,
     rlang (>= 0.1.2),
     dplyr,
