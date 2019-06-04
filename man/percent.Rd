@@ -9,7 +9,7 @@ percent(x, places = 1)
 \arguments{
 \item{x}{A number.}
 
-\item{places}{Number of decimal places in final result (default = 1).}
+\item{decimals}{Number of decimal places in final result (default = 1).}
 }
 \value{
 The number expressed as a percentage.
