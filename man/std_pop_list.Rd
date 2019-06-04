@@ -4,7 +4,7 @@
 \name{std_pop_list}
 \alias{std_pop_list}
 \title{Standard population distributions.}
-\format{A named list with 25 named vectors: master age grouping, SEER age grouping, five_year age grouping, and distributions #1 through #22 as published by NCHS}
+\format{A named list with 25 named vectors: master age grouping, SEER age grouping, five-year age groups, and distributions #1 through #22 as published by NCHS}
 \usage{
 data(std_pop_list)
 }

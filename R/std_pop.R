@@ -6,7 +6,7 @@
 #'
 #' @usage data(std_pop_list)
 #' 
-#' @format A named list with 25 named vectors: master age grouping, SEER age grouping, five_year age grouping, and distributions #1 through #22 as published by NCHS
+#' @format A named list with 25 named vectors: master age grouping, SEER age grouping, five-year age groups, and distributions #1 through #22 as published by NCHS
 #' 
 #' @references Klein RJ, Schoenborn CA. Age adjustment using the 2000
 #' projected U.S. population. Healthy People Statistical Notes, no. 20.
