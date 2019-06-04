@@ -25,4 +25,4 @@ percent <- function(x, places = 1) round(100 * x, decimals)
 
 age_in_years <- function(begin_date, end_date) {
   (begin_date %--% end_date) %/% years(1)
-  }
+}
