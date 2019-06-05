@@ -8,11 +8,11 @@
 #' 
 #' @format A data table with 24 rows and 2 variables.
 #' \describe{
-#'   \item{\code{age_group}}{Age group}
-#'   \item{\code{pop}}{Standard population, in thousands}
+#'   \item{\code{age_group}}{Age group by years}
+#'   \item{\code{pop}}{Standard population in thousands}
 #'  }
 #' 
-#' #' @references Klein RJ, Schoenborn CA. Age adjustment using the 2000
+#' @references Klein RJ, Schoenborn CA. Age adjustment using the 2000
 #' projected U.S. population. Healthy People Statistical Notes, no. 20.
 #' Hyattsville, Maryland: National Center for Health Statistics. January 2001.
 #' https://www.cdc.gov/nchs/data/statnt/statnt20.pdf
