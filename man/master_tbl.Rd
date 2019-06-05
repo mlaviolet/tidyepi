@@ -3,7 +3,7 @@
 \docType{data}
 \name{master_tbl}
 \alias{master_tbl}
-\title{STandard population master table.}
+\title{Standard population master table.}
 \format{A data table with 24 rows and 2 variables.
 \describe{
   \item{\code{age_group}}{Age group}
