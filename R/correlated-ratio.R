@@ -40,5 +40,12 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
   parent_region_dat <- df %>% 
     group_by({{ agegroup }}) %>%
     summarize(n = sum({{ events }}), pop = sum({{ person_yrs }} ))
+  # adjusted rate for parent region
+  parent_region_rate <- parent_region_dat %>% 
+    direct_adjust(agegroup, n, pop, std_pop, decimals = 7, 
+                  base = base) %>% 
+    select(events, person_yrs, adj_rate, adj_lci, adj_uci) %>% 
+    mutate(region = parent) %>% 
+    select(region, everything())
   }
 
