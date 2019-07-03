@@ -76,7 +76,8 @@ asthma_dat <- tbl(edwp,
 # events, population, adjusted rate for parent region
 asthma_dat_parent <- asthma_dat %>% 
   group_by(agegroup) %>% 
-  summarize(n = sum(n), pop = sum(pop)) 
+  summarize(n = sum(n), pop = sum(pop))
+# adjusted rate for parent region
 
 asthma_rate_parent <- asthma_dat_parent %>% 
   direct_adjust(agegroup, n, pop, std_pop_list$dist_01, base = 10000,
@@ -85,13 +86,12 @@ asthma_rate_parent <- asthma_dat_parent %>%
          adj_rate, adj_lci, adj_uci) %>% 
   mutate(county = "New Hampshire") %>% 
   select(county, everything())
-         # crude_rate, crude_lci, crude_uci, 
-         # rate_ratio, ratio_lci, ratio_uci)
-
 
 # add counts, pop, within and outside subregion
 asthma_dat <- asthma_dat %>% 
-  inner_join(asthma_dat_parent, by = "agegroup") %>% 
+  inner_join(asthma_dat_parent %>% 
+               select(agegroup, n, pop), 
+             by = "agegroup") %>% 
   # group_by(agegroup) %>% 
   # summarize(n = sum(n), pop = sum(pop)) %>% 
   mutate(pop_c = pop.y - pop.x,
@@ -126,21 +126,24 @@ adj_rate_outregions <- asthma_dat %>%
 step6 <- list(adj_rate_subregions, adj_rate_outregions, prop_outregions) %>% 
   reduce(inner_join, by = "county") %>% 
   mutate(adj_rate_parent = pull(asthma_rate_parent, adj_rate)) %>% # enframe?
-  mutate(rate_ratio = adj_rate / adj_rate_parent) %>% 
+  mutate(ratio_rate = adj_rate / adj_rate_parent) %>% 
   mutate(moe = 
            1.96 * (adj_rate / adj_rate_parent ^ 2) * 
            sqrt(prop_xc * adj_rate_c ^ 2 * 
                   (adj_rate_var / adj_rate^2 + adj_rate_var_c / adj_rate_c ^2)),
-         ratio_lci = max(rate_ratio - moe, 0), 
-         ratio_uci = rate_ratio + moe) %>% 
+         ratio_lci = max(ratio_rate - moe, 0), 
+         ratio_uci = ratio_rate + moe) %>% 
   select(county, events, person_yrs, 
          adj_rate, adj_lci, adj_uci,
          # crude_rate, crude_lci, crude_uci, 
-         rate_ratio, ratio_lci, ratio_uci) %>% 
+         ratio_rate, ratio_lci, ratio_uci) %>% 
   mutate(sig = case_when(ratio_lci > 1 ~ "Higher",
                          ratio_uci < 1 ~ "Lower",
                          TRUE ~ "Similar")) %>% 
-  bind_rows(asthma_rate_parent)
+  bind_rows(asthma_rate_parent) %>% 
+  mutate_at(vars(starts_with("adj")), function(x) round(x, 1)) %>% 
+  mutate_at(vars(starts_with("ratio")), function(x) round(x, 2))
+  
   
 # OK TO HERE --------------------------------------------------------------
 # ADD SIGNIFICANCE FLAG
