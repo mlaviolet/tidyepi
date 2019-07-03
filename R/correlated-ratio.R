@@ -47,5 +47,14 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     select(events, person_yrs, adj_rate, adj_lci, adj_uci) %>% 
     mutate(region = parent) %>% 
     select(region, everything())
+  # add counts, pop, within and outside subregion
+  full_dat <- df %>% 
+    inner_join(parent_region_dat %>% 
+                 select(agegroup, n, pop), 
+               by = "agegroup") %>% 
+    mutate(pop_c = pop.y - pop.x,
+           n_c = n.y - n.x) %>% 
+    select(-c(n.y, pop.y)) %>% 
+    rename(n = n.x, pop = pop.x)
   }
 
