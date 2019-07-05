@@ -33,12 +33,12 @@
 #' https://www.ncbi.nlm.nih.gov/pubmed/17260923
 #'
 #' @importFrom dplyr group_by
-#' @importFrom dplyr summarize
+#' @importFrom dplyr inner_join
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
-#' @importFrom dplyr select
-#' @importFrom dplyr inner_join
 #' @importFrom dplyr pull
+#' @importFrom dplyr select
+#' @importFrom dplyr summarize
 #' @importFrom tibble enframe
 #' @export
 #'

@@ -29,26 +29,26 @@
 #' @references Tiwari RC et al. (2010) Interval estimation for ratios of correlated age-adjusted rates.
 #' Journal of Data Science 8:471-482. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3279758/
 #' 
-#' @importFrom dplyr group_by
-#' @importFrom dplyr summarize
-#' @importFrom dplyr select
-#' @importFrom dplyr mutate
-#' @importFrom dplyr rename
-#' @importFrom dplyr inner_join
-#' @importFrom dplyr do 
-#' @importFrom purrr reduce
-#' @importFrom dplyr pull
-#' @importFrom dplyr matches
-#' @importFrom dplyr vars
-#' @importFrom dplyr everything
-#' @importFrom dplyr group_by_at
-#' @importFrom dplyr starts_with
-#' @importFrom dplyr ends_with
-#' @importFrom dplyr contains
-#' @importFrom dplyr case_when
 #' @importFrom dplyr bind_rows
+#' @importFrom dplyr case_when
+#' @importFrom dplyr contains
+#' @importFrom dplyr do 
+#' @importFrom dplyr ends_with
+#' @importFrom dplyr everything
+#' @importFrom dplyr group_by
+#' @importFrom dplyr group_by_at
+#' @importFrom dplyr inner_join
+#' @importFrom dplyr matches
+#' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
+#' @importFrom dplyr pull
+#' @importFrom dplyr rename
 #' @importFrom dplyr rename_at
+#' @importFrom dplyr select
+#' @importFrom dplyr starts_with
+#' @importFrom dplyr summarize
+#' @importFrom dplyr vars
+#' @importFrom purrr reduce
 #' @export
 #' 
 correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
