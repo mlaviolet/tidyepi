@@ -56,8 +56,10 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
                              level = 95, dec_rate = 1, dec_ratio = 2) {
   # normal percentile for confidence intervals
   z <- qnorm((100 + level) / 200)
+  
   # save name of region for later grouping
   region_name <- quo_name(enquo(region))
+  
   # events, population, adjusted rate for parent region
   parent_region_dat <- df %>% 
     group_by({{ agegroup }}) %>%
@@ -71,6 +73,8 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     mutate(region = parent) %>%
     select(region, everything()) %>% 
     rename_at(vars(1), ~ region_name)
+  
+  # pull vector of parent region adjusted rate
   parent_adj_rate <- parent_region_rate %>% 
     pull(adj_rate)
   
@@ -86,16 +90,14 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
   
   # proportion of population outside subregion
   prop_outregions <- full_dat %>%
-    # FIX -- NEED TO REFER TO REGIONAL VARIABLE IN full_dat FOR GROUPING
-    # works when using column index
-    group_by_at(1) %>%
+    group_by_at(vars(region_name)) %>%
     summarize(pop = sum(pop), pop_c = sum(pop_c)) %>%
     mutate(prop_xc = pop_c / (pop_c + pop)) %>% 
     select(-matches("^pop"))
     
   # adjusted rate within subregions
   adj_rate_subregions <- full_dat %>%
-    group_by_at(1) %>%
+    group_by_at(vars(region_name)) %>%
     do(direct_adjust(., agegroup, n, pop, std_pop, 
                      base = base, level = level, decimals = Inf)) %>% 
     mutate(adj_rate_var = adj_rate_stderr ^ 2) %>% 
@@ -103,12 +105,16 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
   
   # adjusted rate outside subregions
   adj_rate_outregions <- full_dat %>%
-    group_by_at(1) %>%
+    group_by_at(vars(region_name)) %>%
     do(direct_adjust(., agegroup, n_c, pop_c, std_pop, 
                      base = base, level = level, decimals = Inf)) %>% 
     mutate(adj_rate_var = adj_rate_stderr ^ 2) %>% 
     select(-adj_rate_stderr, -starts_with("crude"))
   
+  # for each region, compute ratio of its adjusted rate to that of the parent
+  #   region with confidence intervals
+  # append event count, population total, and adjusted rates with confidence
+  #   intervals for parent region
   final_tbl <-
     list(adj_rate_subregions, adj_rate_outregions, prop_outregions) %>%
     reduce(inner_join, by = region_name) %>%
@@ -131,15 +137,12 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     bind_rows(parent_region_rate) %>% 
     mutate_at(vars(starts_with("adj")), function(x) round(x, dec_rate)) %>% 
     mutate_at(vars(starts_with("ratio")), function(x) round(x, dec_ratio))
-  
-  
-  # test_dat <- full_dat %>% 
-  #   group_by(!!region_name) %>% 
-  #   do(direct_adjust(., agegroup, n, pop, std_pop,
-  #                    decimals = 7, base = 10000))
-  
-  list(region_name, parent_region_rate, full_dat, prop_outregions,
-       adj_rate_subregions, adj_rate_outregions, final_tbl)
   }
+  
+# test function call
+# test_dat <- 
+#   correlated_rates(asthma_dat, county, agegroup, n, pop,
+#                    std_pop_list$dist_01, parent = "New Hampshire", 
+#                    base = 10000)
 
 
