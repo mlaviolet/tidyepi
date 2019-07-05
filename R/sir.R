@@ -61,10 +61,13 @@ reshape_for_SIR <- function(df, strata, split_var, study_group, n, pop) {
 #'   \item{\code{sir_uci}}{Upper confidence limit of SIR by Garwood}}
 #' @references Garwood F (1936) Fiducial limits for the Poisson distribution,
 #'  Biometrika 28:437-442.
+#' @importFrom dplyr everything
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr select
+#' @importFrom dplyr starts_with
 #' @importFrom dplyr summarize
+#' @importFrom dplyr vars
 #' @export
 #'
 #' @examples

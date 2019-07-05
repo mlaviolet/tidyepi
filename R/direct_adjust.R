@@ -34,11 +34,13 @@
 #'
 #' @importFrom dplyr group_by
 #' @importFrom dplyr inner_join
+#' @importFrom dplyr matches
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr pull
 #' @importFrom dplyr select
 #' @importFrom dplyr summarize
+#' @importFrom dplyr vars
 #' @importFrom tibble enframe
 #' @export
 #'
