@@ -11,7 +11,7 @@ correlated_rates(df, region, agegroup, events, person_yrs, std_pop,
 \arguments{
 \item{df}{A data frame with columns for age group, event counts, and person-years totals as described in the next three arguments}
 
-\item{region}{Subregion for which to calculate adjusted rates; e.g. county within a state.}
+\item{region}{Subregion for which to calculate adjusted rates.}
 
 \item{agegroup}{Age group or other stratifying variable.}
 

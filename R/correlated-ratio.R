@@ -42,6 +42,12 @@
 #' @importFrom dplyr vars
 #' @importFrom dplyr everything
 #' @importFrom dplyr group_by_at
+#' @importFrom dplyr starts_with
+#' @importFrom dplyr ends_with
+#' @importFrom dplyr contains
+#' @importFrom dplyr case_when
+#' @importFrom dplyr bind_rows
+#' @importFrom dplyr mutate_at
 #' @export
 #' 
 correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
@@ -61,6 +67,8 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     select(events, person_yrs, adj_rate, adj_lci, adj_uci) %>%
     mutate(region = parent) %>%
     select(region, everything())
+  parent_adj_rate <- parent_region_rate %>% 
+    pull(adj_rate)
   
   # add counts, pop, within and outside subregion
   full_dat <- df %>%
@@ -78,26 +86,45 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     # works when using column index
     group_by_at(1) %>%
     summarize(pop = sum(pop), pop_c = sum(pop_c)) %>%
-    mutate(prop_xc = pop_c / (pop_c + pop)) 
-  
+    mutate(prop_xc = pop_c / (pop_c + pop)) %>% 
+    select(-matches("^pop"))
+    
   # adjusted rate within subregions
   adj_rate_subregions <- full_dat %>%
     group_by_at(1) %>%
     do(direct_adjust(., agegroup, n, pop, std_pop, decimals = 7)) %>% 
     mutate(adj_rate_var = adj_rate_stderr ^ 2) %>% 
-    select(-adj_rate_stderr)
+    select(-adj_rate_stderr, -starts_with("crude"))
   
   # adjusted rate outside subregions
   adj_rate_outregions <- full_dat %>%
     group_by_at(1) %>%
     do(direct_adjust(., agegroup, n_c, pop_c, std_pop, decimals = 7)) %>% 
     mutate(adj_rate_var = adj_rate_stderr ^ 2) %>% 
-    select(-adj_rate_stderr)
+    select(-adj_rate_stderr, -starts_with("crude"))
   
-  # final_tbl <- 
-  #   list(adj_rate_subregions, adj_rate_outregions, prop_outregions) %>% 
-  #   reduce(inner_join, by = region_name) %>% 
-  #   mutate(adj_rate_parent = pull(parent_region_rate, adj_rate)) 
+  final_tbl <-
+    list(adj_rate_subregions, adj_rate_outregions, prop_outregions) %>%
+    reduce(inner_join, by = region_name) %>%
+    mutate(adj_rate_parent = parent_adj_rate) %>% 
+    mutate(ratio_rate = adj_rate.x / adj_rate_parent) %>% 
+    mutate(moe = 
+             1.96 * (adj_rate.x / adj_rate_parent ^ 2) * 
+              sqrt(prop_xc * adj_rate.y ^ 2 * 
+                     (adj_rate_var.x / adj_rate.x^2 + 
+                        adj_rate_var.y / adj_rate.y ^2)),
+            ratio_lci = max(ratio_rate - moe, 0), 
+            ratio_uci = ratio_rate + moe) %>% 
+    rename(events = events.x, person_yrs = person_yrs.x,
+           adj_rate = adj_rate.x, adj_lci = adj_lci.x, adj_uci = adj_uci.x) %>% 
+    select(-contains("_var"), -matches("\\.y$"), -moe, -prop_xc,
+           -adj_rate_parent) %>% 
+    mutate(sig = case_when(ratio_lci > 1 ~ "Higher",
+                           ratio_uci < 1 ~ "Lower",
+                           TRUE ~ "Similar")) %>% 
+    # bind_rows(parent_region_rate) %>% 
+    mutate_at(vars(starts_with("adj")), function(x) round(x, dec_rate)) %>% 
+    mutate_at(vars(starts_with("ratio")), function(x) round(x, dec_ratio))
   
   
   # test_dat <- full_dat %>% 
@@ -106,7 +133,7 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
   #                    decimals = 7, base = 10000))
   
   list(region_name, parent_region_rate, full_dat, prop_outregions,
-       adj_rate_subregions, adj_rate_outregions)
+       adj_rate_subregions, adj_rate_outregions, final_tbl)
   }
 
 
