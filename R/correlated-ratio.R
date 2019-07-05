@@ -66,7 +66,8 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
                   base = base) %>%
     select(events, person_yrs, adj_rate, adj_lci, adj_uci) %>%
     mutate(region = parent) %>%
-    select(region, everything())
+    select(region, everything()) %>% 
+    rename_at(vars(1), ~ region_name)
   parent_adj_rate <- parent_region_rate %>% 
     pull(adj_rate)
   
@@ -122,7 +123,7 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     mutate(sig = case_when(ratio_lci > 1 ~ "Higher",
                            ratio_uci < 1 ~ "Lower",
                            TRUE ~ "Similar")) %>% 
-    # bind_rows(parent_region_rate) %>% 
+    bind_rows(parent_region_rate) %>% 
     mutate_at(vars(starts_with("adj")), function(x) round(x, dec_rate)) %>% 
     mutate_at(vars(starts_with("ratio")), function(x) round(x, dec_ratio))
   
