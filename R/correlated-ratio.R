@@ -36,6 +36,12 @@
 #' @importFrom dplyr rename
 #' @importFrom dplyr inner_join
 #' @importFrom dplyr do 
+#' @importFrom purrr reduce
+#' @importFrom dplyr pull
+#' @importFrom dplyr matches
+#' @importFrom dplyr vars
+#' @importFrom dplyr everything
+#' @importFrom dplyr group_by_at
 #' @export
 #' 
 correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
@@ -47,6 +53,7 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
   parent_region_dat <- df %>% 
     group_by({{ agegroup }}) %>%
     summarize(n = sum({{ events }}), pop = sum({{ person_yrs }} ))
+  
   # adjusted rate for parent region
   parent_region_rate <- parent_region_dat %>%
     direct_adjust(agegroup, n, pop, std_pop, decimals = 7,
@@ -54,6 +61,7 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     select(events, person_yrs, adj_rate, adj_lci, adj_uci) %>%
     mutate(region = parent) %>%
     select(region, everything())
+  
   # add counts, pop, within and outside subregion
   full_dat <- df %>%
     inner_join(parent_region_dat %>%
@@ -70,8 +78,7 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     # works when using column index
     group_by_at(1) %>%
     summarize(pop = sum(pop), pop_c = sum(pop_c)) %>%
-    mutate(prop_xc = pop_c / (pop_c + pop)) #%>%
-    # select(-matches("pop"))
+    mutate(prop_xc = pop_c / (pop_c + pop)) 
   
   # adjusted rate within subregions
   adj_rate_subregions <- full_dat %>%
@@ -86,6 +93,12 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     do(direct_adjust(., agegroup, n_c, pop_c, std_pop, decimals = 7)) %>% 
     mutate(adj_rate_var = adj_rate_stderr ^ 2) %>% 
     select(-adj_rate_stderr)
+  
+  # final_tbl <- 
+  #   list(adj_rate_subregions, adj_rate_outregions, prop_outregions) %>% 
+  #   reduce(inner_join, by = region_name) %>% 
+  #   mutate(adj_rate_parent = pull(parent_region_rate, adj_rate)) 
+  
   
   # test_dat <- full_dat %>% 
   #   group_by(!!region_name) %>% 
