@@ -73,12 +73,39 @@ asthma_dat <- tbl(edwp,
   complete(county, agegroup, fill = list(n = 0)) %>% 
   inner_join(pop_dat, by = c("county", "agegroup"))
 
+# save data for later use
+save(asthma_dat, file = here("data-raw", "asthma.Rdata"))
+
+# arguments for function to compute adjusted rate plus ratio to state rate
+#   with CIs
+# data frame
+# subregions
+# age group
+# events
+# person-years
+# name of parent region
+# standard population
+# base multiplier
+# confidence level
+# decimals to round adjusted rates
+# decimals to round rate ratios
+
+# Outline of function to compute regional age-adjusted rates and ratio of
+#   regional rate to parent rate with confidence intervals
+# Aggregate data by age group to get events and person-years for parent region
+# Find adjusted rate for parent region using direct_adjust()
+# For each region and age group, find complements of event counts and 
+#   person-years totals
+# For each region find the proportion of total population outside the region
+# For each region find the adjusted rate both within and outside the region
+# Compute rate ratios and CIs
+
 # events, population, adjusted rate for parent region
 asthma_dat_parent <- asthma_dat %>% 
   group_by(agegroup) %>% 
   summarize(n = sum(n), pop = sum(pop))
-# adjusted rate for parent region
 
+# adjusted rate for parent region
 asthma_rate_parent <- asthma_dat_parent %>% 
   direct_adjust(agegroup, n, pop, std_pop_list$dist_01, base = 10000,
                 decimals = 7) %>% 
@@ -97,6 +124,7 @@ asthma_dat <- asthma_dat %>%
   mutate(pop_c = pop.y - pop.x,
          n_c = n.y - n.x) %>% 
   select(county, agegroup, n = n.x, n_c, pop = pop.x, pop_c)
+
 
 # proportion of population outside subregion
 prop_outregions <- asthma_dat %>% 

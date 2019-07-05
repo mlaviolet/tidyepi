@@ -1,10 +1,10 @@
 #' Directly age-adjusted rates.
 #'
-#' @param df A data frame.
-#' @param agegroup Age group or other stratifying variable
+#' @param df A data frame with columns for age group, event counts, and person-years totals as described in the next three arguments
+#' @param agegroup Age group or other stratifying variable.
 #' @param events Number of events.
 #' @param person_yrs Number of person-years at risk.
-#' @param std_pop Vector of standard population. Can be totals, proportions, or percentages.
+#' @param std_pop Vector of standard population distribution. Can be totals, proportions, or percentages.
 #' @param base Multiplier; e.g. per 100,000 population.
 #' @param level Confidence level expressed as percentage.
 #' @param decimals Decimal places to round results.
@@ -62,9 +62,9 @@
 direct_adjust <- function(df, agegroup, events, person_yrs, std_pop,
                           base = 100000, level = 95, decimals = 1) {
   J <- 1 / length(std_pop) # correction term for computing rates and variances
-  alpha_lci <- (100 - level) / 200
-  alpha_uci <- (100 + level) / 200
-  # make vector of standard population weights into a tibbele for joining
+  alpha_lci <- (100 - level) / 200 # 2.5% lower limit for 95% interval
+  alpha_uci <- (100 + level) / 200 # 97.5% upper limit for 95% interval
+  # make vector of standard population weights into a tibble for joining
   #   with incidence data
   agegroup <- enquo(agegroup)
   # pull character vector of age group labels

@@ -3,6 +3,7 @@
 export("%>%")
 export(.data)
 export(age_in_years)
+export(correlated_rates)
 export(crude_rate)
 export(direct_adjust)
 export(enexpr)

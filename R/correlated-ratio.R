@@ -31,30 +31,37 @@
 #' 
 #' @importFrom dplyr group_by
 #' @importFrom dplyr summarize
+#' @importFrom dplyr select
+#' @importFrom tidyselect matches
 #' @export
 #' 
 correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
                              parent = "Parent Region", base = 100000, 
                              level = 95, dec_rate = 1, dec_ratio = 2) {
+  # save name of region for later grouping
+  # region_name <- enquo(region)
+  # region_name <- quo_name(region)
   # events, population, adjusted rate for parent region
   parent_region_dat <- df %>% 
     group_by({{ agegroup }}) %>%
     summarize(n = sum({{ events }}), pop = sum({{ person_yrs }} ))
   # adjusted rate for parent region
-  parent_region_rate <- parent_region_dat %>% 
-    direct_adjust(agegroup, n, pop, std_pop, decimals = 7, 
-                  base = base) %>% 
-    select(events, person_yrs, adj_rate, adj_lci, adj_uci) %>% 
-    mutate(region = parent) %>% 
+  parent_region_rate <- parent_region_dat %>%
+    direct_adjust(agegroup, n, pop, std_pop, decimals = 7,
+                  base = base) %>%
+    select(events, person_yrs, adj_rate, adj_lci, adj_uci) %>%
+    mutate(region = parent) %>%
     select(region, everything())
   # add counts, pop, within and outside subregion
-  full_dat <- df %>% 
-    inner_join(parent_region_dat %>% 
-                 select(agegroup, n, pop), 
-               by = "agegroup") %>% 
+  full_dat <- df %>%
+    inner_join(parent_region_dat %>%
+                 select(agegroup, n, pop),
+               by = "agegroup") %>%
     mutate(pop_c = pop.y - pop.x,
-           n_c = n.y - n.x) %>% 
-    select(-c(n.y, pop.y)) %>% 
+           n_c = n.y - n.x) %>%
+    select(-c(n.y, pop.y)) %>%
     rename(n = n.x, pop = pop.x)
+  # region_name
+ 
   }
 

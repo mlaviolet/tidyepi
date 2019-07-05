@@ -8,15 +8,15 @@ direct_adjust(df, agegroup, events, person_yrs, std_pop, base = 1e+05,
   level = 95, decimals = 1)
 }
 \arguments{
-\item{df}{A data frame.}
+\item{df}{A data frame with columns for age group, event counts, and person-years totals as described in the next three arguments}
 
-\item{agegroup}{Age group or other stratifying variable}
+\item{agegroup}{Age group or other stratifying variable.}
 
 \item{events}{Number of events.}
 
 \item{person_yrs}{Number of person-years at risk.}
 
-\item{std_pop}{Vector of standard population. Can be totals, proportions, or percentages.}
+\item{std_pop}{Vector of standard population distribution. Can be totals, proportions, or percentages.}
 
 \item{base}{Multiplier; e.g. per 100,000 population.}
 
