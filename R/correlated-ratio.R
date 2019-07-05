@@ -39,8 +39,7 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
                              parent = "Parent Region", base = 100000, 
                              level = 95, dec_rate = 1, dec_ratio = 2) {
   # save name of region for later grouping
-  # region_name <- enquo(region)
-  # region_name <- quo_name(region)
+  region_name <- quo_name(enquo(region))
   # events, population, adjusted rate for parent region
   parent_region_dat <- df %>% 
     group_by({{ agegroup }}) %>%
@@ -61,7 +60,13 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
            n_c = n.y - n.x) %>%
     select(-c(n.y, pop.y)) %>%
     rename(n = n.x, pop = pop.x)
-  # region_name
- 
+  # proportion of population outside subregion
+  # prop_outregions <- full_dat %>% 
+  #   group_by({{ region }}) %>% 
+  #   summarize(pop = sum(pop), pop_c = sum(pop_c)) %>% 
+  #   mutate(prop_xc = pop_c / (pop_c + pop)) %>% 
+  #   select(-matches("pop"))
+  
+  list(region_name, parent_region_rate, full_dat)
   }
 
