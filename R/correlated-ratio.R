@@ -48,11 +48,14 @@
 #' @importFrom dplyr case_when
 #' @importFrom dplyr bind_rows
 #' @importFrom dplyr mutate_at
+#' @importFrom dplyr rename_at
 #' @export
 #' 
 correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
                              parent = "Parent Region", base = 100000, 
                              level = 95, dec_rate = 1, dec_ratio = 2) {
+  # normal percentile for confidence intervals
+  z <- qnorm((100 + level) / 200)
   # save name of region for later grouping
   region_name <- quo_name(enquo(region))
   # events, population, adjusted rate for parent region
@@ -93,14 +96,16 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
   # adjusted rate within subregions
   adj_rate_subregions <- full_dat %>%
     group_by_at(1) %>%
-    do(direct_adjust(., agegroup, n, pop, std_pop, decimals = 7)) %>% 
+    do(direct_adjust(., agegroup, n, pop, std_pop, 
+                     base = base, level = level, decimals = Inf)) %>% 
     mutate(adj_rate_var = adj_rate_stderr ^ 2) %>% 
     select(-adj_rate_stderr, -starts_with("crude"))
   
   # adjusted rate outside subregions
   adj_rate_outregions <- full_dat %>%
     group_by_at(1) %>%
-    do(direct_adjust(., agegroup, n_c, pop_c, std_pop, decimals = 7)) %>% 
+    do(direct_adjust(., agegroup, n_c, pop_c, std_pop, 
+                     base = base, level = level, decimals = Inf)) %>% 
     mutate(adj_rate_var = adj_rate_stderr ^ 2) %>% 
     select(-adj_rate_stderr, -starts_with("crude"))
   
@@ -110,12 +115,12 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     mutate(adj_rate_parent = parent_adj_rate) %>% 
     mutate(ratio_rate = adj_rate.x / adj_rate_parent) %>% 
     mutate(moe = 
-             1.96 * (adj_rate.x / adj_rate_parent ^ 2) * 
-              sqrt(prop_xc * adj_rate.y ^ 2 * 
-                     (adj_rate_var.x / adj_rate.x^2 + 
-                        adj_rate_var.y / adj_rate.y ^2)),
-            ratio_lci = max(ratio_rate - moe, 0), 
-            ratio_uci = ratio_rate + moe) %>% 
+             z * (adj_rate.x / adj_rate_parent ^ 2) * 
+             sqrt(prop_xc * adj_rate.y ^ 2 * 
+                    (adj_rate_var.x / adj_rate.x^2 + 
+                       adj_rate_var.y / adj_rate.y ^2)),
+           ratio_lci = max(ratio_rate - moe, 0), 
+           ratio_uci = ratio_rate + moe) %>% 
     rename(events = events.x, person_yrs = person_yrs.x,
            adj_rate = adj_rate.x, adj_lci = adj_lci.x, adj_uci = adj_uci.x) %>% 
     select(-contains("_var"), -matches("\\.y$"), -moe, -prop_xc,
