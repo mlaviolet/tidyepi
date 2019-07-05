@@ -32,7 +32,10 @@
 #' @importFrom dplyr group_by
 #' @importFrom dplyr summarize
 #' @importFrom dplyr select
-#' @importFrom tidyselect matches
+#' @importFrom dplyr mutate
+#' @importFrom dplyr rename
+#' @importFrom dplyr inner_join
+#' @importFrom dplyr do 
 #' @export
 #' 
 correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
@@ -60,13 +63,37 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
            n_c = n.y - n.x) %>%
     select(-c(n.y, pop.y)) %>%
     rename(n = n.x, pop = pop.x)
-  # proportion of population outside subregion
-  # prop_outregions <- full_dat %>% 
-  #   group_by({{ region }}) %>% 
-  #   summarize(pop = sum(pop), pop_c = sum(pop_c)) %>% 
-  #   mutate(prop_xc = pop_c / (pop_c + pop)) %>% 
-  #   select(-matches("pop"))
   
-  list(region_name, parent_region_rate, full_dat)
+  # proportion of population outside subregion
+  prop_outregions <- full_dat %>%
+    # FIX -- NEED TO REFER TO REGIONAL VARIABLE IN full_dat FOR GROUPING
+    # works when using column index
+    group_by_at(1) %>%
+    summarize(pop = sum(pop), pop_c = sum(pop_c)) %>%
+    mutate(prop_xc = pop_c / (pop_c + pop)) #%>%
+    # select(-matches("pop"))
+  
+  # adjusted rate within subregions
+  adj_rate_subregions <- full_dat %>%
+    group_by_at(1) %>%
+    do(direct_adjust(., agegroup, n, pop, std_pop, decimals = 7)) %>% 
+    mutate(adj_rate_var = adj_rate_stderr ^ 2) %>% 
+    select(-adj_rate_stderr)
+  
+  # adjusted rate outside subregions
+  adj_rate_outregions <- full_dat %>%
+    group_by_at(1) %>%
+    do(direct_adjust(., agegroup, n_c, pop_c, std_pop, decimals = 7)) %>% 
+    mutate(adj_rate_var = adj_rate_stderr ^ 2) %>% 
+    select(-adj_rate_stderr)
+  
+  # test_dat <- full_dat %>% 
+  #   group_by(!!region_name) %>% 
+  #   do(direct_adjust(., agegroup, n, pop, std_pop,
+  #                    decimals = 7, base = 10000))
+  
+  list(region_name, parent_region_rate, full_dat, prop_outregions,
+       adj_rate_subregions, adj_rate_outregions)
   }
+
 
