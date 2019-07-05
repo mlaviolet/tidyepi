@@ -1,4 +1,4 @@
-## code to prepare `asthma_dat` dataset goes here
+## code to prepare `asthma_dat` dataset
 
 library(tidyverse)
 library(here)
