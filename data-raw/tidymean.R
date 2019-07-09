@@ -9,8 +9,7 @@
 #' @export
 # this version uses bare name for data_var
 tidy_mean <- function(df, group_var, data_var) {
-  mean_name <- enquo(data_var)
-  mean_name <- paste0("mean_", quo_name(mean_name))
+  mean_name <- paste0("mean_", quo_name(enquo(data_var)))
   df %>%
     group_by({{ group_var }}) %>%
     summarize(!!mean_name := mean({{ data_var }}))
@@ -18,13 +17,5 @@ tidy_mean <- function(df, group_var, data_var) {
 
 # tidy_mean(mtcars, cyl, mpg)
 
-# tidy_mean <- function(df, group_var, data_var) {
-#   group_var <- enquo(group_var)
-#   data_col <- sym(data_var)
-#   mean_name <- paste0("mean_", data_var)
-#   df %>%
-#     group_by(!!group_var) %>%
-#     summarize(!!mean_name := mean(!!data_col))
-#   }
 
 
