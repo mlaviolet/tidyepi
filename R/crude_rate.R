@@ -37,14 +37,13 @@
 #' 
 crude_rate <- function(df, events, person_yrs, base = 100000, level = 95,
                        decimals = 1) {
-  events <- enquo(events)
-  person_yrs <- enquo(person_yrs)
   alpha_lci <- (100 - level) / 200
   alpha_uci <- (100 + level) / 200
   df %>% 
-    mutate(rate = !!events / !!person_yrs, 
-           rate_lci = qgamma(alpha_lci, !!events) / !!person_yrs,
-           rate_uci = qgamma(alpha_uci, !!(events) + 1) / !!person_yrs) %>%
+    mutate(rate = {{ events }} / {{ person_yrs }}, 
+           rate_lci = qgamma(alpha_lci, {{ events }}) / {{ person_yrs }},
+           rate_uci = 
+             qgamma(alpha_uci, {{ events }} + 1) / {{ person_yrs }}) %>%
     mutate_at(vars(starts_with("rate")),
               function(x) round(base * x, decimals))
   }
