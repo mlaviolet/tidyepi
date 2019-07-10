@@ -81,14 +81,11 @@ reshape_for_SIR <- function(df, strata, split_var, study_group, n, pop) {
 #'   do(indirect_adjust(., study_count, study_pop, ref_count, ref_pop))
 indirect_adjust <- function(df, study_count, study_pop, ref_count, ref_pop,
                            decimals = 2, level = 95) {
-  study_count <- enquo(study_count)
-  study_pop <- enquo(study_pop)
-  ref_count <- enquo(ref_count)
-  ref_pop <- enquo(ref_pop)
   df %>%
     # compute observed and expected for each age group, then sum
-    summarize(expected = sum(!!ref_count / !!ref_pop * !!study_pop),
-              observed = sum(!!study_count)) %>%
+    summarize(expected = 
+                sum({{ ref_count }} / {{ ref_pop }} * {{ study_pop }}),
+              observed = sum({{ study_count }})) %>%
     # compute SIR and LCI, UCI using method of Garwood (1936) -- this method
     #   is very conservative
     mutate(sir = observed / expected,
