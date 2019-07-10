@@ -5,7 +5,7 @@
 \title{Indirect adjustment.}
 \usage{
 indirect_adjust(df, study_count, study_pop, ref_count, ref_pop,
-  decimals = 2, level = 95)
+  level = 95, decimals = 2)
 }
 \arguments{
 \item{df}{A data frame.}
@@ -18,9 +18,9 @@ indirect_adjust(df, study_count, study_pop, ref_count, ref_pop,
 
 \item{ref_pop}{Number of person-years at risk in referent group.}
 
-\item{decimals}{Number of decimal places in expected counts, SIR's and confidence intervals.}
-
 \item{level}{Confidence level as percentage.}
+
+\item{decimals}{Number of decimal places in expected counts, SIR's and confidence intervals.}
 }
 \value{
 A data table with the following fields:
@@ -45,7 +45,7 @@ library(dplyr)
 sir_by_year <- cancer \%>\%
   group_by(Year) \%>\%
   do(reshape_for_SIR(., agegroup, Sex, "Male", n, pop)) \%>\%
-  do(indirect_adjust(., study_count, study_pop, ref_count, ref_pop))
+  do(indirect_adjust(., study_count, study_pop, ref_count, ref_pop, decimals = 4))
 }
 \references{
 Garwood F (1936) Fiducial limits for the Poisson distribution,

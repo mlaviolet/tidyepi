@@ -28,12 +28,12 @@ reshape_for_SIR <- function(df, strata, split_var, study_group, n, pop) {
   pop <- enquo(pop)
   df %>%
     # add indicator for referent group (1) and study group (0)
-    mutate(group_id = if_else(!!split_var == study_group, 0, 1)) %>%
+    mutate(group_id = if_else({{ split_var }} == study_group, 0, 1)) %>%
     # reshape into columns strata variable, study_count, study_pop,
     #   ref_count, ref_pop
-    gather(key, value, !!n, !!pop) %>%
+    gather(key, value, {{ n }}, {{ pop }}) %>%
     unite("group_id", group_id, key) %>%
-    select(!!strata, group_id, value)  %>%
+    select({{ strata }}, group_id, value)  %>%
     spread(group_id, value) %>%
     setNames(c(names(.)[1],
                "study_count", "study_pop", "ref_count", "ref_pop"))
@@ -78,9 +78,9 @@ reshape_for_SIR <- function(df, strata, split_var, study_group, n, pop) {
 #' sir_by_year <- cancer %>%
 #'   group_by(Year) %>%
 #'   do(reshape_for_SIR(., agegroup, Sex, "Male", n, pop)) %>%
-#'   do(indirect_adjust(., study_count, study_pop, ref_count, ref_pop))
+#'   do(indirect_adjust(., study_count, study_pop, ref_count, ref_pop, decimals = 4))
 indirect_adjust <- function(df, study_count, study_pop, ref_count, ref_pop,
-                           decimals = 2, level = 95) {
+                           level = 95, decimals = 2) {
   df %>%
     # compute observed and expected for each age group, then sum
     summarize(expected = 
