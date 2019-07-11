@@ -84,7 +84,7 @@ indirect_adjust <- function(df, study_count, study_pop, ref_count, ref_pop,
   df %>%
     # compute observed and expected for each age group, then sum
     summarize(expected = 
-                sum({{ ref_count }} / {{ ref_pop }} * {{ study_pop }}),
+                sum({{ study_pop }} * {{ ref_count }} / {{ ref_pop }}),
               observed = sum({{ study_count }})) %>%
     # compute SIR and LCI, UCI using method of Garwood (1936) -- this method
     #   is very conservative
