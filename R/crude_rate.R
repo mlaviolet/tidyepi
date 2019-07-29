@@ -12,6 +12,7 @@
 #'   \item{\code{events}}{Number of events.}
 #'   \item{\code{person_yrs}}{Total person-years at risk.}
 #'   \item{\code{rate}}{Crude (unadjusted) rate.}
+#'   \item{\code{rate_stderr}}{Standard error of rate.}
 #'   \item{\code{rate_lci}}{Lower confidence limit for rate.}
 #'   \item{\code{rate_uci}}{Upper confidence limit for rate.}
 #'   }
@@ -41,6 +42,7 @@ crude_rate <- function(df, events, person_yrs, base = 100000, level = 95,
   alpha_uci <- (100 + level) / 200
   df %>% 
     mutate(rate = {{ events }} / {{ person_yrs }}, 
+           rate_stderr = sqrt({{ events }}) / {{ person_yrs }}, 
            rate_lci = qgamma(alpha_lci, {{ events }}) / {{ person_yrs }},
            rate_uci = 
              qgamma(alpha_uci, {{ events }} + 1) / {{ person_yrs }}) %>%

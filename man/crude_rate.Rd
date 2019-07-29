@@ -26,6 +26,7 @@ A data table with the following fields:
   \item{\code{events}}{Number of events.}
   \item{\code{person_yrs}}{Total person-years at risk.}
   \item{\code{rate}}{Crude (unadjusted) rate.}
+  \item{\code{rate_stderr}}{Standard error of rate.}
   \item{\code{rate_lci}}{Lower confidence limit for rate.}
   \item{\code{rate_uci}}{Upper confidence limit for rate.}
   }
