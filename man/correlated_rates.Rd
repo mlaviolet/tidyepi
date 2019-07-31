@@ -45,6 +45,13 @@ A data table with the following fields:
 \description{
 Age-adjusted rates for correlated variables
 }
+\examples{
+# Age-adjusted COPD mortality rates by state with ratio to US rate and confidence intervals, 2016
+library(tidyepi)
+copd_rates <- correlated_rates(copd, State, agegroup, Deaths, Population, 
+              std_pop = c(23961, 18136, 12315, 4259), parent = "United States") 
+
+}
 \references{
 Tiwari RC et al. (2006) Efficient interval estimation for age-adjusted 
 cancer rates. Statistical Methods in Medical Research 15:547-569. 

@@ -51,13 +51,24 @@
 #' @importFrom purrr reduce
 #' @export
 #' 
+#' @examples
+#' # Age-adjusted COPD mortality rates by state with ratio to US rate and confidence intervals, 2016
+#' library(tidyepi)
+#' copd_rates <- correlated_rates(copd, State, agegroup, Deaths, Population, 
+#'               std_pop = c(23961, 18136, 12315, 4259), parent = "United States") 
+#' 
+# test function call
+# test_dat <- 
+#   correlated_rates(asthma_dat, county, agegroup, n, pop,
+#                    std_pop_list$dist_01, parent = "New Hampshire", 
+#                    base = 10000)#' 
 correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
                              parent = "Parent Region", base = 100000, 
                              level = 95, dec_rate = 1, dec_ratio = 2) {
   # normal percentile for confidence intervals
   z <- qnorm((100 + level) / 200)
   
-  # save name of region for later grouping
+  # save names of region, events, person_yrs for later use
   region_name <- quo_name(enquo(region))
   events_name <- quo_name(enquo(events))
   pop_name <- quo_name(enquo(person_yrs))
@@ -88,24 +99,13 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
                by = "agegroup") %>% 
     mutate(pop_c = parent_pop - !!sym(pop_name),
            n_c = parent_n - !!sym(events_name)) 
-# return(full_dat)
-  
-  #   
-# return(list(df, parent_region_dat, full_dat, 
-#             region_name, events_name, pop_name))
-  
-# full_dat <- full_dat %>% 
-    # select(-c(n.y, pop.y)) %>%
-    # rename(n = n.x, pop = pop.x)
-  
+
   # proportion of population outside subregion
   prop_outregions <- full_dat %>%
     group_by_at(vars(region_name)) %>%
     summarize(pop = sum(parent_pop), pop_c = sum(pop_c)) %>%
     mutate(prop_c = pop_c / pop) %>% 
     select(-matches("^pop"))
-
-# OK TO HERE --------------------------------------------------------------
 
   # adjusted rate within subregions
   adj_rate_subregions <- full_dat %>%
@@ -150,11 +150,12 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     mutate_at(vars(starts_with("adj")), function(x) round(x, dec_rate)) %>% 
     mutate_at(vars(starts_with("ratio")), function(x) round(x, dec_ratio))
   }
-  
-# test function call
-# test_dat <- 
-#   correlated_rates(asthma_dat, county, agegroup, n, pop,
-#                    std_pop_list$dist_01, parent = "New Hampshire", 
-#                    base = 10000)
+
+
+
+# state_dat <- 
+#   correlated_rates(copd_by_state, State, agegroup, Deaths, 
+#                    Population, c(23961, 18136, 12315, 4259),
+#                    parent = "United States") 
 
 
