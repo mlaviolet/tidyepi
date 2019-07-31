@@ -28,8 +28,9 @@ county_names <- geo_tbl %>%
 # Indicator 2.1: Emergency department visit rate for asthma
 
 # population by county and age group
+pop_data_dir <- "R:/OCPH/EPI/BHSDM/Group/Michael Laviolette/_Projects/tidyepi/data-raw"
 pop_dat <- 
-  read_fwf(here("data-raw", "icen_2000_09_y09.zip"),
+  read_fwf(file.path(pop_data_dir, "icen_2000_09_y09.zip"),
            fwf_cols(state = c(13, 14),
                     county = c(15, 17),
                     age = c(18, 19),
@@ -47,7 +48,7 @@ pop_dat <-
   mutate_at("county", factor, labels = county_names)
 
 # ED discharges by county and age group for 2009--then join to population
-asthma_dat <- tbl(edwp, 
+asthma_ed <- tbl(edwp, 
                   in_schema("WRQPRD", "ED_STATISTICAL_ANALYSIS_MVW")) %>% 
   filter(DISCHARGE_YR == "2009", 
          str_sub(VR_GEOCODE, 1, 2) == "28",
@@ -62,6 +63,6 @@ asthma_dat <- tbl(edwp,
   complete(county, agegroup, fill = list(n = 0)) %>% 
   inner_join(pop_dat, by = c("county", "agegroup"))
 
-save(asthma_dat, file = here("data-raw", "asthma.Rdata"))
+save(asthma_ed, file = file.path(pop_data_dir, "asthma.Rdata"))
 
 # usethis::use_data(asthma_dat)
