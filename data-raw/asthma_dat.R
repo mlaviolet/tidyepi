@@ -64,4 +64,4 @@ asthma_dat <- tbl(edwp,
 
 save(asthma_dat, file = here("data-raw", "asthma.Rdata"))
 
-usethis::use_data(asthma_dat)
+# usethis::use_data(asthma_dat)
