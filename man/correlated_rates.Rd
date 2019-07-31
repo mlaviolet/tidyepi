@@ -2,14 +2,14 @@
 % Please edit documentation in R/correlated-ratio.R
 \name{correlated_rates}
 \alias{correlated_rates}
-\title{Age-adjusted rates for correlated variables}
+\title{Ratios of correlated age-adjusted rates.}
 \usage{
 correlated_rates(df, region, agegroup, events, person_yrs, std_pop,
   parent = "Parent Region", base = 1e+05, level = 95, dec_rate = 1,
   dec_ratio = 2)
 }
 \arguments{
-\item{df}{A data frame with columns for age group, event counts, and person-years totals as described in the next three arguments}
+\item{df}{A data frame with columns for region, age group, event counts, and person-years totals as described in the next four arguments}
 
 \item{region}{Subregion for which to calculate adjusted rates.}
 
@@ -43,7 +43,7 @@ A data table with the following fields:
   }
 }
 \description{
-Age-adjusted rates for correlated variables
+Function to compute ratios of correlated age-adjusted rates with a confidence interval that accounts for the correlation. This is useful for comparing the rate of a subregion (e.g. a county) with its parent (e.g. its state).
 }
 \examples{
 # Age-adjusted COPD mortality rates by state with ratio to US rate and confidence intervals, 2016

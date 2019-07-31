@@ -1,6 +1,7 @@
-#' Age-adjusted rates for correlated variables
-#'
-#' @param df A data frame with columns for age group, event counts, and person-years totals as described in the next three arguments
+#' Ratios of correlated age-adjusted rates. 
+#' 
+#' @description Function to compute ratios of correlated age-adjusted rates with a confidence interval that accounts for the correlation. This is useful for comparing the rate of a subregion (e.g. a county) with its parent (e.g. its state).
+#' @param df A data frame with columns for region, age group, event counts, and person-years totals as described in the next four arguments
 #' @param region Subregion for which to calculate adjusted rates.
 #' @param agegroup Age group or other stratifying variable.
 #' @param events Number of events.

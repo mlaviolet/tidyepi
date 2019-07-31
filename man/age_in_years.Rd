@@ -15,7 +15,7 @@ age_in_years(begin_date, end_date)
 Number of anniversaries of begin_date (usually person's age).
 }
 \description{
-Compute complete years between events.
+Computes number of yearly anniversaries between two dates. Useful for computing tha age of a person at death or some other event.
 }
 \examples{
 # Dave Brubeck

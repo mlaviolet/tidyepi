@@ -39,7 +39,7 @@ A data table with the following fields:
   }
 }
 \description{
-Directly age-adjusted rates.
+Compute age-adjusted rates using direct standardization.
 }
 \note{
 Confidence limits for adjusted rates are computed using the method of 

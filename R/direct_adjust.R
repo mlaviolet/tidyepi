@@ -1,5 +1,5 @@
 #' Directly age-adjusted rates.
-#'
+#' @description Compute age-adjusted rates using direct standardization.
 #' @param df A data frame with columns for age group, event counts, and person-years totals as described in the next three arguments
 #' @param agegroup Age group or other stratifying variable.
 #' @param events Number of events.

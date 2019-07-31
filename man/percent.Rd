@@ -15,5 +15,5 @@ percent(x, decimals = 1)
 The number expressed as a percentage.
 }
 \description{
-Convert a number to a percentage.
+Convenience function to convert a number to a percentage.
 }

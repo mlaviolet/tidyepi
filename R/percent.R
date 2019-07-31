@@ -1,5 +1,6 @@
 #' Convert a number to a percentage.
-#'
+#' 
+#' @description Convenience function to convert a number to a percentage.
 #' @param x A number.
 #' @param decimals Number of decimal places in final result (default = 1).
 #' @return The number expressed as a percentage.
@@ -7,6 +8,7 @@
 percent <- function(x, decimals = 1) round(100 * x, decimals)
 
 #' Compute complete years between events.
+#' @description Computes number of yearly anniversaries between two dates. Useful for computing tha age of a person at death or some other event. 
 #' @param begin_date Beginning date (usually birth).
 #' @param end_date Ending date (usually death).
 #' @return Number of anniversaries of begin_date (usually person's age).
