@@ -59,15 +59,18 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
   
   # save name of region for later grouping
   region_name <- quo_name(enquo(region))
+  events_name <- quo_name(enquo(events))
+  pop_name <- quo_name(enquo(person_yrs))
   
   # events, population, adjusted rate for parent region
   parent_region_dat <- df %>% 
     group_by({{ agegroup }}) %>%
-    summarize(n = sum({{ events }}), pop = sum({{ person_yrs }} ))
+    summarize(parent_n = sum({{ events }}), 
+              parent_pop = sum({{ person_yrs }} ))
   
   # adjusted rate for parent region
   parent_region_rate <- parent_region_dat %>%
-    direct_adjust(agegroup, n, pop, std_pop, decimals = 7,
+    direct_adjust(agegroup, parent_n, parent_pop, std_pop, decimals = 7,
                   base = base) %>%
     select(events, person_yrs, adj_rate, adj_lci, adj_uci) %>%
     mutate(region = parent) %>%
@@ -81,24 +84,33 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
   # add counts, pop, within and outside subregion
   full_dat <- df %>%
     inner_join(parent_region_dat %>%
-                 select(agegroup, n, pop),
-               by = "agegroup") %>%
-    mutate(pop_c = pop.y - pop.x,
-           n_c = n.y - n.x) %>%
-    select(-c(n.y, pop.y)) %>%
-    rename(n = n.x, pop = pop.x)
+                 select(agegroup, parent_n, parent_pop),
+               by = "agegroup") %>% 
+    mutate(pop_c = parent_pop - !!sym(pop_name),
+           n_c = parent_n - !!sym(events_name)) 
+# return(full_dat)
+  
+  #   
+# return(list(df, parent_region_dat, full_dat, 
+#             region_name, events_name, pop_name))
+  
+# full_dat <- full_dat %>% 
+    # select(-c(n.y, pop.y)) %>%
+    # rename(n = n.x, pop = pop.x)
   
   # proportion of population outside subregion
   prop_outregions <- full_dat %>%
     group_by_at(vars(region_name)) %>%
-    summarize(pop = sum(pop), pop_c = sum(pop_c)) %>%
-    mutate(prop_xc = pop_c / (pop_c + pop)) %>% 
+    summarize(pop = sum(parent_pop), pop_c = sum(pop_c)) %>%
+    mutate(prop_c = pop_c / pop) %>% 
     select(-matches("^pop"))
-    
+
+# OK TO HERE --------------------------------------------------------------
+
   # adjusted rate within subregions
   adj_rate_subregions <- full_dat %>%
     group_by_at(vars(region_name)) %>%
-    do(direct_adjust(., agegroup, n, pop, std_pop, 
+    do(direct_adjust(., agegroup, !!sym(events_name), !!sym(pop_name), std_pop, 
                      base = base, level = level, decimals = Inf)) %>% 
     mutate(adj_rate_var = adj_rate_stderr ^ 2) %>% 
     select(-adj_rate_stderr, -starts_with("crude"))
@@ -122,14 +134,14 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     mutate(ratio_rate = adj_rate.x / adj_rate_parent) %>% 
     mutate(moe = 
              z * (adj_rate.x / adj_rate_parent ^ 2) * 
-             sqrt(prop_xc * adj_rate.y ^ 2 * 
+             sqrt(prop_c * adj_rate.y ^ 2 * 
                     (adj_rate_var.x / adj_rate.x^2 + 
                        adj_rate_var.y / adj_rate.y ^2)),
            ratio_lci = max(ratio_rate - moe, 0), 
            ratio_uci = ratio_rate + moe) %>% 
     rename(events = events.x, person_yrs = person_yrs.x,
            adj_rate = adj_rate.x, adj_lci = adj_lci.x, adj_uci = adj_uci.x) %>% 
-    select(-contains("_var"), -matches("\\.y$"), -moe, -prop_xc,
+    select(-contains("_var"), -matches("\\.y$"), -moe, -prop_c,
            -adj_rate_parent) %>% 
     mutate(sig = case_when(ratio_lci > 1 ~ "Higher",
                            ratio_uci < 1 ~ "Lower",
