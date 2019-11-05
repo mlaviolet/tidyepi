@@ -50,19 +50,17 @@
 #' @importFrom dplyr summarize
 #' @importFrom dplyr vars
 #' @importFrom purrr reduce
-#' @export
-#' 
 #' @examples
 #' # Age-adjusted COPD mortality rates by state with ratio to US rate and confidence intervals, 2016
-#' library(tidyepi)
 #' copd_rates <- correlated_rates(copd, State, agegroup, Deaths, Population, 
 #'               std_pop = c(23961, 18136, 12315, 4259), parent = "United States") 
+#' @export
 #' 
 # test function call
 # test_dat <- 
 #   correlated_rates(asthma_dat, county, agegroup, n, pop,
 #                    std_pop_list$dist_01, parent = "New Hampshire", 
-#                    base = 10000)#' 
+#                    base = 10000)
 correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
                              parent = "Parent Region", base = 100000, 
                              level = 95, dec_rate = 1, dec_ratio = 2) {
