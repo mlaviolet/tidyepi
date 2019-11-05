@@ -19,10 +19,13 @@ save(copd, file = here("data-raw", "copd.rda"))
 
 # usethis::use_data(copd)
 
-# state_dat <- 
-#   correlated_rates(copd_by_state, State, agegroup, Deaths, 
-#                    Population, c(23961, 18136, 12315, 4259),
-#                    parent = "United States") 
+state_dat <-
+  correlated_rates(copd, State, agegroup, Deaths,
+                   Population, c(23961, 18136, 12315, 4259),
+                   parent = "United States")
+state_sort <- state_dat %>% 
+  arrange(desc(adj_rate))
+
 # 
 # test_dat <- 
 #   correlated_rates(asthma_dat, county, agegroup, n, pop,
