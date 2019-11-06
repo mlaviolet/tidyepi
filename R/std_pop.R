@@ -8,6 +8,8 @@
 #' 
 #' @format A named list with 25 named vectors: master age grouping, SEER age grouping, five-year age groups, and distributions #1 through #22 as published by NCHS
 #' 
+#' @note Populations are in thousands.
+#' 
 #' @references Klein RJ, Schoenborn CA. Age adjustment using the 2000
 #' projected U.S. population. Healthy People Statistical Notes, no. 20.
 #' Hyattsville, Maryland: National Center for Health Statistics. January 2001.
