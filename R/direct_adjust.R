@@ -59,13 +59,13 @@
 #' library(dplyr)
 #' cancer_by_year_sex <- cancer %>%
 #'   group_by(Year, Sex) %>%
-#'   do(direct_adjust(., agegroup, n, pop, std_pop_list$seer_pop))
+#'   group_modify(~ direct_adjust(.x, agegroup, n, pop, std_pop_list$seer_pop))
 #'
 #' # same rates by year
 #' cancer_by_year <- cancer %>%
 #'   group_by(Year, agegroup) %>%
 #'   summarize(n = sum(n), pop = sum(pop)) %>% 
-#'   do(direct_adjust(., agegroup, n, pop, std_pop_list$seer_pop))
+#'   group_modify(~ direct_adjust(.x, agegroup, n, pop, std_pop_list$seer_pop))
 #'   
 direct_adjust <- function(df, agegroup, events, person_yrs, std_pop,
                           base = 100000, level = 95, decimals = 1) {
