@@ -6,7 +6,7 @@
 #'
 #' @usage data(std_pop_list)
 #' 
-#' @format A named list with 25 named vectors: master age grouping, SEER age grouping, five-year age groups, and distributions #1 through #22 as published by NCHS
+#' @format A named list with 26 named vectors: master age grouping, SEER age grouping, five-year age groups, ten-year age groups, and distributions #1 through #22 as published by NCHS
 #' 
 #' @note Populations are in thousands.
 #' 
