@@ -4,8 +4,16 @@
 \alias{direct_adjust}
 \title{Directly age-adjusted rates.}
 \usage{
-direct_adjust(df, agegroup, events, person_yrs, std_pop, base = 1e+05,
-  level = 95, decimals = 1)
+direct_adjust(
+  df,
+  agegroup,
+  events,
+  person_yrs,
+  std_pop,
+  base = 1e+05,
+  level = 95,
+  decimals = 1
+)
 }
 \arguments{
 \item{df}{A data frame with columns for age group, event counts, and person-years totals as described in the next three arguments}
@@ -57,8 +65,14 @@ library(tidyepi)
 library(dplyr)
 cancer_by_year_sex <- cancer \%>\%
   group_by(Year, Sex) \%>\%
-  do(direct_adjust(., agegroup, n, pop, std_pop_list$seer_pop))
+  group_modify(~ direct_adjust(.x, agegroup, n, pop, std_pop_list$seer_pop))
 
+# same rates by year
+cancer_by_year <- cancer \%>\%
+  group_by(Year, agegroup) \%>\%
+  summarize(n = sum(n), pop = sum(pop)) \%>\% 
+  group_modify(~ direct_adjust(.x, agegroup, n, pop, std_pop_list$seer_pop))
+  
 }
 \references{
 Anderson RN and Rosenberg HM (1998) Age standardization of 

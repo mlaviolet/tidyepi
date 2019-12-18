@@ -4,8 +4,15 @@
 \alias{indirect_adjust}
 \title{Indirect adjustment.}
 \usage{
-indirect_adjust(df, study_count, study_pop, ref_count, ref_pop,
-  level = 95, decimals = 2)
+indirect_adjust(
+  df,
+  study_count,
+  study_pop,
+  ref_count,
+  ref_pop,
+  level = 95,
+  decimals = 2
+)
 }
 \arguments{
 \item{df}{A data frame.}

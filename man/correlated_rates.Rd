@@ -4,9 +4,19 @@
 \alias{correlated_rates}
 \title{Ratios of correlated age-adjusted rates.}
 \usage{
-correlated_rates(df, region, agegroup, events, person_yrs, std_pop,
-  parent = "Parent Region", base = 1e+05, level = 95, dec_rate = 1,
-  dec_ratio = 2)
+correlated_rates(
+  df,
+  region,
+  agegroup,
+  events,
+  person_yrs,
+  std_pop,
+  parent = "Parent Region",
+  base = 1e+05,
+  level = 95,
+  dec_rate = 1,
+  dec_ratio = 2
+)
 }
 \arguments{
 \item{df}{A data frame with columns for region, age group, event counts, and person-years totals as described in the next four arguments}
@@ -47,10 +57,8 @@ Function to compute ratios of correlated age-adjusted rates with a confidence in
 }
 \examples{
 # Age-adjusted COPD mortality rates by state with ratio to US rate and confidence intervals, 2016
-library(tidyepi)
 copd_rates <- correlated_rates(copd, State, agegroup, Deaths, Population, 
               std_pop = c(23961, 18136, 12315, 4259), parent = "United States") 
-
 }
 \references{
 Tiwari RC et al. (2006) Efficient interval estimation for age-adjusted 

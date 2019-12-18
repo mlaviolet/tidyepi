@@ -4,8 +4,7 @@
 \alias{crude_rate}
 \title{Crude or age-specific rates.}
 \usage{
-crude_rate(df, events, person_yrs, base = 1e+05, level = 95,
-  decimals = 1)
+crude_rate(df, events, person_yrs, base = 1e+05, level = 95, decimals = 1)
 }
 \arguments{
 \item{df}{A data frame.}
