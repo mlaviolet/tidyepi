@@ -69,12 +69,12 @@ five_year_pop <- std_pop %>%
              "30-34", "35-39", "40-44", "45-49", "50-54", "55-59", 
              "60-64", "65-69", "70-74", "75-79", "80-84", "85+"))
 
-# ten-year, 12 age groups
+# ten-year, 11 age groups
 ten_year_pop <- std_pop %>% 
   group_by(ten_year) %>% 
   summarize(pop = sum(master)) %>% 
   pull(pop) %>% 
-  setNames(c("00", "01-04", "05-09", "10-14", "15-24", "25-34", "35-44", 
+  setNames(c("00", "01-04", "05-14", "15-24", "25-34", "35-44", 
              "45-54", "55-64", "65-74", "75-84", "85+")) 
 
 std_pop_list <- map2(sprintf("%02d", 1:22), names_lst,  makeVector)
