@@ -1,7 +1,9 @@
 library(dplyr)
 library(purrr)
+library(readr)
+library(here)
 
-std_pop <- readxl::read_excel("data-raw/standard-population.xlsx",
+std_pop <- readxl::read_excel(here("data-raw", "standard-population.xlsx"),
                               na = "0")
 
 master_pop <- pull(std_pop[, 2]) %>% setNames(pull(std_pop[, 1]))
@@ -85,8 +87,20 @@ names(std_pop_list) <- c("master_pop", "seer_pop", "five_year_pop",
                          paste0("dist_", sprintf("%02d", 1:22)))
 lapply(std_pop_list, sum)
 
-# usethis::use_data(std_pop_list, overwrite = TRUE)
+# more detailed standard populations from SEER
+# https://seer.cancer.gov/stdpopulations/
 
+std_pop_single_age <- 
+  read_fwf(here("data-raw", "stdpop.singleagesthru99.txt"),
+           fwf_cols(standard = 3, age = 3, population = 8),
+           col_types = cols(.default = col_number())) %>% 
+  filter(standard == 205) %>% 
+  mutate_at("population", function(x) round(x / 1000)) %>% 
+  select(-standard)
+# sum(single_age_std_pop$population)
+
+# usethis::use_data(std_pop_list, overwrite = TRUE)
+usethis::use_data(std_pop_single_age, overwrite = TRUE)
 
 
 
