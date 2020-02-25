@@ -29,7 +29,6 @@
 #' 
 #' @examples
 #' # US cancer rates by year
-#' library(tidyepi)
 #' library(dplyr)
 #' cancer %>% 
 #'   group_by(Year) %>% 

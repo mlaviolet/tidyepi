@@ -55,7 +55,6 @@
 #' @examples
 #' # US age-adjusted cancer rates by year and sex
 #' # using standard SEER age groups 0, 1-4, 5-9, 10-14, 15-19, ..., 80-84,
-#' library(tidyepi)
 #' library(dplyr)
 #' cancer_by_year_sex <- cancer %>%
 #'   group_by(Year, Sex) %>%

@@ -73,7 +73,6 @@ reshape_for_SIR <- function(df, strata, split_var, study_group, n, pop) {
 #' @examples
 #' # standardized incidence ratio of US cancer incidence for males
 #' #   compared to females
-#' library(tidyepi)
 #' library(dplyr)
 #' sir_by_year <- cancer %>%
 #'   group_by(Year) %>%
