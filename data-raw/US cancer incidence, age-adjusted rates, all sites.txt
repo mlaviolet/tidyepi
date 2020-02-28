@@ -1,0 +1,54 @@
+"Notes"	"Year"	"Year Code"	Count	Population	Age-Adjusted Rate	Age-Adjusted Rate Lower 95% Confidence Interval	Age-Adjusted Rate Upper 95% Confidence Interval	Crude Rate	Crude Rate Lower 95% Confidence Interval	Crude Rate Upper 95% Confidence Interval
+	"1999"	"1999"	1330622	272809488	496.0	495.2	496.9	487.7	486.9	488.6
+	"2000"	"2000"	1359344	275879626	498.8	498.0	499.7	492.7	491.9	493.6
+	"2001"	"2001"	1418934	282115961	506.3	505.5	507.1	503.0	502.1	503.8
+	"2002"	"2002"	1436779	284766512	503.8	503.0	504.6	504.5	503.7	505.4
+	"2003"	"2003"	1450998	290107933	495.0	494.2	495.8	500.2	499.3	501.0
+	"2004"	"2004"	1474587	292805298	494.6	493.8	495.4	503.6	502.8	504.4
+	"2005"	"2005"	1502736	295312662	495.1	494.3	495.9	508.9	508.0	509.7
+	"2006"	"2006"	1540040	298379912	497.9	497.1	498.7	516.1	515.3	516.9
+	"2007"	"2007"	1588563	301231207	502.9	502.1	503.7	527.4	526.5	528.2
+	"2008"	"2008"	1610498	304093966	499.3	498.5	500.0	529.6	528.8	530.4
+	"2009"	"2009"	1630396	306771529	495.2	494.4	496.0	531.5	530.7	532.3
+	"2010"	"2010"	1620687	309348193	482.2	481.5	483.0	523.9	523.1	524.7
+	"2011"	"2011"	1650603	311663358	481.4	480.6	482.1	529.6	528.8	530.4
+	"2012"	"2012"	1641799	313998379	468.6	467.9	469.3	522.9	522.1	523.7
+	"2013"	"2013"	1663768	316204908	465.1	464.4	465.9	526.2	525.4	527.0
+	"2014"	"2014"	1679482	318563456	459.7	459.0	460.4	527.2	526.4	528.0
+	"2015"	"2015"	1690300	320896618	453.2	452.5	453.9	526.7	525.9	527.5
+"---"
+"Dataset: United States and Puerto Rico Cancer Statistics, 1999-2015 Incidence"
+"Query Parameters:"
+"Title: US cancer incidence, age-adjusted rates, all sites"
+"Age Groups: All"
+"Cancer Sites: All"
+"Ethnicity: All"
+"Race: All"
+"Sex: All"
+"States: All"
+"Year: All, 1999 to 2015"
+"Group By: Year"
+"Show Totals: False"
+"Show Zero Values: False"
+"Show Suppressed: False"
+"Calculate Rates Per: 100,000"
+"Standard Population: 2000 U.S. Std. Million"
+"---"
+"Help: See http://wonder.cdc.gov/wonder/help/cancer-v2015.html for more information."
+"---"
+"Query Date: Nov 1, 2018 2:46:15 PM"
+"---"
+"Suggested Citation: United States Cancer Statistics: 1999 - 2015 Incidence, WONDER Online Database. United States Department of"
+"Health and Human Services, Centers for Disease Control and Prevention and National Cancer Institute; 2018. Accessed at"
+"http://wonder.cdc.gov/cancer-v2015.html on Nov 1, 2018 2:46:15 PM"
+"---"
+Caveats:
+"1. Data are from selected statewide and metropolitan area cancer registries that meet data quality criteria. Incidence data"
+"shown for the United States are diagnoses and populations from included registries only."
+"2. Information on primary site, behavior, and histology was coded according to the International Classification of Diseases for"
+"Oncology, Third Edition (ICD-O-3) and categorized according to the revised SEER recodes dated January 27, 2003, which define"
+"standard groupings of primary cancer sites."
+"3. For the 2005 year, the Census Bureau estimates that 203,937 persons were displaced from Alabama, Louisiana, Mississippi and"
+"Texas due to Hurricanes Katrina and Rita. CDC WONDER does not include the displaced persons in the 2005 population counts for"
+"these states, nor are these counts included in the summary populations for the affected division, regions or national"
+"population. However, the USCS web site does include these displaced persons in the national population figures for 2005."
