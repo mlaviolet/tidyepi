@@ -1,0 +1,243 @@
+"Notes"	"State"	"State Code"	"Age Group"	"Age Group Code"	Deaths	Population	Crude Rate
+	"Alabama"	"01"	"55-64 years"	"55-64"	439	645092	68.1
+	"Alabama"	"01"	"65-74 years"	"65-74"	918	464669	197.6
+	"Alabama"	"01"	"75-84 years"	"75-84"	1115	233129	478.3
+	"Alabama"	"01"	"85+ years"	"85+"	671	86753	773.5
+	"Alaska"	"02"	"55-64 years"	"55-64"	43	95322	45.1
+	"Alaska"	"02"	"65-74 years"	"65-74"	71	52387	135.5
+	"Alaska"	"02"	"75-84 years"	"75-84"	67	18399	364.2
+	"Alaska"	"02"	"85+ years"	"85+"	40	6420	623.1
+	"Arizona"	"04"	"55-64 years"	"55-64"	347	831142	41.7
+	"Arizona"	"04"	"65-74 years"	"65-74"	998	682820	146.2
+	"Arizona"	"04"	"75-84 years"	"75-84"	1196	351270	340.5
+	"Arizona"	"04"	"85+ years"	"85+"	1033	136834	754.9
+	"Arkansas"	"05"	"55-64 years"	"55-64"	293	378345	77.4
+	"Arkansas"	"05"	"65-74 years"	"65-74"	587	283580	207.0
+	"Arkansas"	"05"	"75-84 years"	"75-84"	716	146474	488.8
+	"Arkansas"	"05"	"85+ years"	"85+"	429	56680	756.9
+	"California"	"06"	"55-64 years"	"55-64"	1251	4688718	26.7
+	"California"	"06"	"65-74 years"	"65-74"	2801	3089002	90.7
+	"California"	"06"	"75-84 years"	"75-84"	4211	1535300	274.3
+	"California"	"06"	"85+ years"	"85+"	4635	722333	641.7
+	"Colorado"	"08"	"55-64 years"	"55-64"	286	699310	40.9
+	"Colorado"	"08"	"65-74 years"	"65-74"	588	457780	128.4
+	"Colorado"	"08"	"75-84 years"	"75-84"	823	199973	411.6
+	"Colorado"	"08"	"85+ years"	"85+"	763	85771	889.6
+	"Connecticut"	"09"	"55-64 years"	"55-64"	115	504555	22.8
+	"Connecticut"	"09"	"65-74 years"	"65-74"	296	323968	91.4
+	"Connecticut"	"09"	"75-84 years"	"75-84"	421	163507	257.5
+	"Connecticut"	"09"	"85+ years"	"85+"	510	89928	567.1
+	"Delaware"	"10"	"55-64 years"	"55-64"	55	130645	42.1
+	"Delaware"	"10"	"65-74 years"	"65-74"	152	99961	152.1
+	"Delaware"	"10"	"75-84 years"	"75-84"	169	47902	352.8
+	"Delaware"	"10"	"85+ years"	"85+"	144	19087	754.4
+	"District of Columbia"	"11"	"55-64 years"	"55-64"	27	70044	38.5
+	"District of Columbia"	"11"	"65-74 years"	"65-74"	36	45559	79.0
+	"District of Columbia"	"11"	"75-84 years"	"75-84"	41	21762	188.4
+	"District of Columbia"	"11"	"85+ years"	"85+"	31	11370	272.6
+	"Florida"	"12"	"55-64 years"	"55-64"	1248	2727163	45.8
+	"Florida"	"12"	"65-74 years"	"65-74"	2771	2277584	121.7
+	"Florida"	"12"	"75-84 years"	"75-84"	3754	1261354	297.6
+	"Florida"	"12"	"85+ years"	"85+"	3642	555979	655.1
+	"Georgia"	"13"	"55-64 years"	"55-64"	644	1236811	52.1
+	"Georgia"	"13"	"65-74 years"	"65-74"	1337	839325	159.3
+	"Georgia"	"13"	"75-84 years"	"75-84"	1472	377202	390.2
+	"Georgia"	"13"	"85+ years"	"85+"	1069	138135	773.9
+	"Hawaii"	"15"	"55-64 years"	"55-64"	36	184406	19.5
+	"Hawaii"	"15"	"65-74 years"	"65-74"	86	139010	61.9
+	"Hawaii"	"15"	"75-84 years"	"75-84"	101	66000	153.0
+	"Hawaii"	"15"	"85+ years"	"85+"	96	38952	246.5
+	"Idaho"	"16"	"55-64 years"	"55-64"	107	208250	51.4
+	"Idaho"	"16"	"65-74 years"	"65-74"	212	153740	137.9
+	"Idaho"	"16"	"75-84 years"	"75-84"	306	72814	420.2
+	"Idaho"	"16"	"85+ years"	"85+"	202	28435	710.4
+	"Illinois"	"17"	"55-64 years"	"55-64"	554	1655713	33.5
+	"Illinois"	"17"	"65-74 years"	"65-74"	1315	1072843	122.6
+	"Illinois"	"17"	"75-84 years"	"75-84"	1791	538938	332.3
+	"Illinois"	"17"	"85+ years"	"85+"	1691	259483	651.7
+	"Indiana"	"18"	"55-64 years"	"55-64"	559	864467	64.7
+	"Indiana"	"18"	"65-74 years"	"65-74"	1043	576378	181.0
+	"Indiana"	"18"	"75-84 years"	"75-84"	1331	286716	464.2
+	"Indiana"	"18"	"85+ years"	"85+"	1060	128469	825.1
+	"Iowa"	"19"	"55-64 years"	"55-64"	183	415998	44.0
+	"Iowa"	"19"	"65-74 years"	"65-74"	437	281046	155.5
+	"Iowa"	"19"	"75-84 years"	"75-84"	661	154469	427.9
+	"Iowa"	"19"	"85+ years"	"85+"	626	78700	795.4
+	"Kansas"	"20"	"55-64 years"	"55-64"	152	372194	40.8
+	"Kansas"	"20"	"65-74 years"	"65-74"	389	244996	158.8
+	"Kansas"	"20"	"75-84 years"	"75-84"	588	127193	462.3
+	"Kansas"	"20"	"85+ years"	"85+"	426	64804	657.4
+	"Kentucky"	"21"	"55-64 years"	"55-64"	479	590470	81.1
+	"Kentucky"	"21"	"65-74 years"	"65-74"	1007	411687	244.6
+	"Kentucky"	"21"	"75-84 years"	"75-84"	1124	200941	559.4
+	"Kentucky"	"21"	"85+ years"	"85+"	675	78089	864.4
+	"Louisiana"	"22"	"55-64 years"	"55-64"	302	603021	50.1
+	"Louisiana"	"22"	"65-74 years"	"65-74"	590	401909	146.8
+	"Louisiana"	"22"	"75-84 years"	"75-84"	688	195073	352.7
+	"Louisiana"	"22"	"85+ years"	"85+"	509	77461	657.1
+	"Maine"	"23"	"55-64 years"	"55-64"	118	210290	56.1
+	"Maine"	"23"	"65-74 years"	"65-74"	220	152331	144.4
+	"Maine"	"23"	"75-84 years"	"75-84"	282	73062	386.0
+	"Maine"	"23"	"85+ years"	"85+"	269	32290	833.1
+	"Maryland"	"24"	"55-64 years"	"55-64"	195	794068	24.6
+	"Maryland"	"24"	"65-74 years"	"65-74"	465	516122	90.1
+	"Maryland"	"24"	"75-84 years"	"75-84"	646	245157	263.5
+	"Maryland"	"24"	"85+ years"	"85+"	624	114931	542.9
+	"Massachusetts"	"25"	"55-64 years"	"55-64"	225	917004	24.5
+	"Massachusetts"	"25"	"65-74 years"	"65-74"	600	612531	98.0
+	"Massachusetts"	"25"	"75-84 years"	"75-84"	824	302627	272.3
+	"Massachusetts"	"25"	"85+ years"	"85+"	842	158806	530.2
+	"Michigan"	"26"	"55-64 years"	"55-64"	686	1392778	49.3
+	"Michigan"	"26"	"65-74 years"	"65-74"	1422	940935	151.1
+	"Michigan"	"26"	"75-84 years"	"75-84"	1694	457531	370.2
+	"Michigan"	"26"	"85+ years"	"85+"	1512	213289	708.9
+	"Minnesota"	"27"	"55-64 years"	"55-64"	189	739313	25.6
+	"Minnesota"	"27"	"65-74 years"	"65-74"	522	472248	110.5
+	"Minnesota"	"27"	"75-84 years"	"75-84"	741	240616	308.0
+	"Minnesota"	"27"	"85+ years"	"85+"	775	119364	649.3
+	"Mississippi"	"28"	"55-64 years"	"55-64"	271	380829	71.2
+	"Mississippi"	"28"	"65-74 years"	"65-74"	548	266051	206.0
+	"Mississippi"	"28"	"75-84 years"	"75-84"	660	133926	492.8
+	"Mississippi"	"28"	"85+ years"	"85+"	468	50964	918.3
+	"Missouri"	"29"	"55-64 years"	"55-64"	532	815760	65.2
+	"Missouri"	"29"	"65-74 years"	"65-74"	1065	559973	190.2
+	"Missouri"	"29"	"75-84 years"	"75-84"	1254	289751	432.8
+	"Missouri"	"29"	"85+ years"	"85+"	896	128297	698.4
+	"Montana"	"30"	"55-64 years"	"55-64"	94	152474	61.6
+	"Montana"	"30"	"65-74 years"	"65-74"	175	110127	158.9
+	"Montana"	"30"	"75-84 years"	"75-84"	221	52138	423.9
+	"Montana"	"30"	"85+ years"	"85+"	185	22775	812.3
+	"Nebraska"	"31"	"55-64 years"	"55-64"	109	241172	45.2
+	"Nebraska"	"31"	"65-74 years"	"65-74"	223	159561	139.8
+	"Nebraska"	"31"	"75-84 years"	"75-84"	379	84361	449.3
+	"Nebraska"	"31"	"85+ years"	"85+"	350	42822	817.3
+	"Nevada"	"32"	"55-64 years"	"55-64"	161	362520	44.4
+	"Nevada"	"32"	"65-74 years"	"65-74"	498	275598	180.7
+	"Nevada"	"32"	"75-84 years"	"75-84"	600	124007	483.8
+	"Nevada"	"32"	"85+ years"	"85+"	440	41537	1059.3
+	"New Hampshire"	"33"	"55-64 years"	"55-64"	73	206156	35.4
+	"New Hampshire"	"33"	"65-74 years"	"65-74"	160	135668	117.9
+	"New Hampshire"	"33"	"75-84 years"	"75-84"	215	61820	347.8
+	"New Hampshire"	"33"	"85+ years"	"85+"	210	29316	716.3
+	"New Jersey"	"34"	"55-64 years"	"55-64"	231	1195810	19.3
+	"New Jersey"	"34"	"65-74 years"	"65-74"	608	776619	78.3
+	"New Jersey"	"34"	"75-84 years"	"75-84"	932	397267	234.6
+	"New Jersey"	"34"	"85+ years"	"85+"	1090	198726	548.5
+	"New Mexico"	"35"	"55-64 years"	"55-64"	116	273230	42.5
+	"New Mexico"	"35"	"65-74 years"	"65-74"	267	203298	131.3
+	"New Mexico"	"35"	"75-84 years"	"75-84"	381	99532	382.8
+	"New Mexico"	"35"	"85+ years"	"85+"	315	39596	795.5
+	"New York"	"36"	"55-64 years"	"55-64"	653	2567707	25.4
+	"New York"	"36"	"65-74 years"	"65-74"	1476	1713040	86.2
+	"New York"	"36"	"75-84 years"	"75-84"	2067	881069	234.6
+	"New York"	"36"	"85+ years"	"85+"	2192	438400	500.0
+	"North Carolina"	"37"	"55-64 years"	"55-64"	672	1300928	51.7
+	"North Carolina"	"37"	"65-74 years"	"65-74"	1454	941813	154.4
+	"North Carolina"	"37"	"75-84 years"	"75-84"	1666	449842	370.4
+	"North Carolina"	"37"	"85+ years"	"85+"	1204	177810	677.1
+	"North Dakota"	"38"	"55-64 years"	"55-64"	25	95008	26.3
+	"North Dakota"	"38"	"65-74 years"	"65-74"	73	59210	123.3
+	"North Dakota"	"38"	"75-84 years"	"75-84"	99	32642	303.3
+	"North Dakota"	"38"	"85+ years"	"85+"	100	18147	551.1
+	"Ohio"	"39"	"55-64 years"	"55-64"	894	1605369	55.7
+	"Ohio"	"39"	"65-74 years"	"65-74"	1810	1081030	167.4
+	"Ohio"	"39"	"75-84 years"	"75-84"	2187	551452	396.6
+	"Ohio"	"39"	"85+ years"	"85+"	1728	254147	679.9
+	"Oklahoma"	"40"	"55-64 years"	"55-64"	414	487868	84.9
+	"Oklahoma"	"40"	"65-74 years"	"65-74"	748	341890	218.8
+	"Oklahoma"	"40"	"75-84 years"	"75-84"	935	177678	526.2
+	"Oklahoma"	"40"	"85+ years"	"85+"	570	70570	807.7
+	"Oregon"	"41"	"55-64 years"	"55-64"	220	547973	40.1
+	"Oregon"	"41"	"65-74 years"	"65-74"	578	415647	139.1
+	"Oregon"	"41"	"75-84 years"	"75-84"	652	187977	346.9
+	"Oregon"	"41"	"85+ years"	"85+"	481	85254	564.2
+	"Pennsylvania"	"42"	"55-64 years"	"55-64"	641	1804053	35.5
+	"Pennsylvania"	"42"	"65-74 years"	"65-74"	1460	1237006	118.0
+	"Pennsylvania"	"42"	"75-84 years"	"75-84"	2069	652247	317.2
+	"Pennsylvania"	"42"	"85+ years"	"85+"	2014	334468	602.2
+	"Rhode Island"	"44"	"55-64 years"	"55-64"	47	146895	32.0
+	"Rhode Island"	"44"	"65-74 years"	"65-74"	98	96933	101.1
+	"Rhode Island"	"44"	"75-84 years"	"75-84"	127	48671	260.9
+	"Rhode Island"	"44"	"85+ years"	"85+"	151	28360	532.4
+	"South Carolina"	"45"	"55-64 years"	"55-64"	382	658202	58.0
+	"South Carolina"	"45"	"65-74 years"	"65-74"	810	513286	157.8
+	"South Carolina"	"45"	"75-84 years"	"75-84"	872	232798	374.6
+	"South Carolina"	"45"	"85+ years"	"85+"	625	84148	742.7
+	"South Dakota"	"46"	"55-64 years"	"55-64"	36	115704	31.1
+	"South Dakota"	"46"	"65-74 years"	"65-74"	95	77464	122.6
+	"South Dakota"	"46"	"75-84 years"	"75-84"	129	39825	323.9
+	"South Dakota"	"46"	"85+ years"	"85+"	135	21516	627.4
+	"Tennessee"	"47"	"55-64 years"	"55-64"	629	866723	72.6
+	"Tennessee"	"47"	"65-74 years"	"65-74"	1207	628409	192.1
+	"Tennessee"	"47"	"75-84 years"	"75-84"	1367	302936	451.3
+	"Tennessee"	"47"	"85+ years"	"85+"	842	115707	727.7
+	"Texas"	"48"	"55-64 years"	"55-64"	1076	3116019	34.5
+	"Texas"	"48"	"65-74 years"	"65-74"	2501	2008449	124.5
+	"Texas"	"48"	"75-84 years"	"75-84"	3275	957001	342.2
+	"Texas"	"48"	"85+ years"	"85+"	2758	387790	711.2
+	"Utah"	"49"	"55-64 years"	"55-64"	99	291159	34.0
+	"Utah"	"49"	"65-74 years"	"65-74"	206	191202	107.7
+	"Utah"	"49"	"75-84 years"	"75-84"	276	93584	294.9
+	"Utah"	"49"	"85+ years"	"85+"	226	36378	621.3
+	"Vermont"	"50"	"55-64 years"	"55-64"	49	96891	50.6
+	"Vermont"	"50"	"65-74 years"	"65-74"	77	67676	113.8
+	"Vermont"	"50"	"75-84 years"	"75-84"	100	30973	322.9
+	"Vermont"	"50"	"85+ years"	"85+"	99	14283	693.1
+	"Virginia"	"51"	"55-64 years"	"55-64"	342	1080365	31.7
+	"Virginia"	"51"	"65-74 years"	"65-74"	820	734524	111.6
+	"Virginia"	"51"	"75-84 years"	"75-84"	1033	348893	296.1
+	"Virginia"	"51"	"85+ years"	"85+"	848	145327	583.5
+	"Washington"	"53"	"55-64 years"	"55-64"	341	945770	36.1
+	"Washington"	"53"	"65-74 years"	"65-74"	749	656507	114.1
+	"Washington"	"53"	"75-84 years"	"75-84"	974	292067	333.5
+	"Washington"	"53"	"85+ years"	"85+"	810	132489	611.4
+	"West Virginia"	"54"	"55-64 years"	"55-64"	245	265906	92.1
+	"West Virginia"	"54"	"65-74 years"	"65-74"	461	203027	227.1
+	"West Virginia"	"54"	"75-84 years"	"75-84"	466	101168	460.6
+	"West Virginia"	"54"	"85+ years"	"85+"	327	39322	831.6
+	"Wisconsin"	"55"	"55-64 years"	"55-64"	231	806268	28.7
+	"Wisconsin"	"55"	"65-74 years"	"65-74"	685	530671	129.1
+	"Wisconsin"	"55"	"75-84 years"	"75-84"	898	268463	334.5
+	"Wisconsin"	"55"	"85+ years"	"85+"	826	129284	638.9
+	"Wyoming"	"56"	"55-64 years"	"55-64"	46	81266	56.6
+	"Wyoming"	"56"	"65-74 years"	"65-74"	91	53240	170.9
+	"Wyoming"	"56"	"75-84 years"	"75-84"	107	24037	445.1
+	"Wyoming"	"56"	"85+ years"	"85+"	70	10535	664.5
+"---"
+"Dataset: Compressed Mortality, 1999-2016"
+"Query Parameters:"
+"Title: COPD mortality by state, 2016"
+"Age Group: 55-64 years; 65-74 years; 75-84 years; 85+ years"
+"ICD-10 Codes: J40 (Bronchitis, not specified as acute or chronic); J41.0 (Simple chronic bronchitis); J41.1 (Mucopurulent"
+"chronic bronchitis); J41.8 (Mixed simple and mucopurulent chronic bronchitis); J42 (Unspecified chronic bronchitis); J43.0"
+"(MacLeod syndrome); J43.1 (Panlobular emphysema); J43.2 (Centrilobular emphysema); J43.8 (Other emphysema); J43.9 (Emphysema,"
+"unspecified); J44.0 (Chronic obstructive pulmonary disease with acute lower respiratory infection); J44.1 (Chronic obstructive"
+"pulmonary disease with acute exacerbation, unspecified); J44.8 (Other specified chronic obstructive pulmonary disease); J44.9"
+"(Chronic obstructive pulmonary disease, unspecified)"
+"Year: 2016"
+"Group By: State; Age Group"
+"Show Totals: False"
+"Show Zero Values: True"
+"Show Suppressed: True"
+"Calculate Rates Per: 100,000"
+"---"
+"Help: See http://wonder.cdc.gov/wonder/help/cmf.html for more information."
+"---"
+"Query Date: Jul 29, 2019 4:25:07 PM"
+"---"
+"Suggested Citation: Centers for Disease Control and Prevention, National Center for Health Statistics. Compressed Mortality File"
+"1999-2016 on CDC WONDER Online Database, released June 2017. Data are from the Compressed Mortality File 1999-2016 Series 20 No."
+"2U, 2016, as compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative"
+"Program. Accessed at http://wonder.cdc.gov/cmf-icd10.html on Jul 29, 2019 4:25:07 PM"
+"---"
+Caveats:
+"1. About sub-national population figures for regions, divisions, states and counties: population figures for 1999 are from the"
+"1990-1999 series of bridged-race intercensal estimates of the July 1 resident population; population figures for 2000 and 2010"
+"are bridged-race April 1 census counts; population figures for 2001-2009 are from the revised 2000-2009 series of bridged-race"
+"intercensal estimates of the July 1 resident population; and population figures for 2011-2015 are bridged-race postcensal"
+"estimates of the July 1 resident population, from the Vintage 2015 series released by NCHS on June 28, 2016."
+"2. Deaths of persons with Age ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among age groups,"
+"so are not included in age-specific counts, age-specific rates or in any age-adjusted rates. More information:"
+"http://wonder.cdc.gov/wonder/help/cmf.html#Not Stated."
+"3. Changes to cause of death classification affect reporting trends. More information:"
+"http://wonder.cdc.gov/wonder/help/cmf.html#ICD-10 Changes."

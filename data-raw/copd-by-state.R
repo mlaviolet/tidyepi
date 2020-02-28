@@ -15,7 +15,7 @@ copd <-
          agegroup = `Age Group Code`) %>% 
   mutate_at(c("State", "agegroup"), factor)
 
-save(copd, file = here("data-raw", "copd.rda"))
+# save(copd, file = here("data-raw", "copd.rda"))
 
 # usethis::use_data(copd)
 
