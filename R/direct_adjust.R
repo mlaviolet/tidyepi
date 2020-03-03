@@ -80,7 +80,7 @@ direct_adjust <- function(df, agegroup, events, person_yrs, std_pop,
   # rename input variables to match argument names
   df <- df %>% 
     rename_at(vars({{ agegroup }}), ~ "agegroup") %>% 
-    rename_at(vars({{  events }}), ~ "events") %>% 
+    rename_at(vars({{  events  }}), ~ "events") %>% 
     rename_at(vars({{  person_yrs }}), ~ "person_yrs")
   adjusted_rate_tbl <- df %>% 
     inner_join(std_wgts, by = "agegroup") %>% 
