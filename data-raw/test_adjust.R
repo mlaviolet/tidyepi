@@ -31,6 +31,7 @@ test_adjust <- function(df, agegroup, events, person_yrs, std_pop,
   std_wgts <- std_pop %>%
     enframe(name = "agegroup", value = "wgt") %>% 
     mutate_at("wgt", function(x) x / sum(x))
+  # rename input variables to match argument names
   df <- df %>% 
     rename_at(vars({{ agegroup }}), ~ "agegroup") %>% 
     rename_at(vars({{  events }}), ~ "events") %>% 
