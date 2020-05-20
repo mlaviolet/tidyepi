@@ -4,11 +4,13 @@
 \name{master_tbl}
 \alias{master_tbl}
 \title{Standard population master table.}
-\format{A data table with 24 rows and 2 variables.
+\format{
+A data table with 24 rows and 2 variables.
 \describe{
   \item{\code{age_group}}{Age group by years}
   \item{\code{pop}}{Standard population in thousands}
- }}
+ }
+}
 \usage{
 data(master_tbl)
 }

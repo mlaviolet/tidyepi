@@ -4,14 +4,16 @@
 \name{cancer}
 \alias{cancer}
 \title{Cancer indidence data.}
-\format{A data table with 646 rows and 5 variables.
+\format{
+A data table with 646 rows and 5 variables.
 \describe{
   \item{\code{Year}}{Calendar year}
   \item{\code{agegroup}}{SEER age group 0, 1-4, 5-9, 10-14, ... 75-84, 85+}
   \item{\code{Sex}}{Male or Female}
   \item{\code{n}}{Number of newly diagnosed cases}
   \item{\code{pop}}{Census estimated population}
- }}
+ }
+}
 \source{
 {CDC WONDER online database} \url{https://wonder.cdc.gov/}
 }

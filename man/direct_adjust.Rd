@@ -40,10 +40,10 @@ A data table with the following fields:
   \item{\code{adj_rate}}{Age-adjusted rate.}
   \item{\code{adj_rate_stderr}}{Standard error of age-adjusted rate.}
   \item{\code{adj_lci}}{Lower confidence limit of age-adjusted rate per Tiwari (2006)}
-  \item{\code{adj_uci}}{Upper confidence limit for age-adusted rate per Tiwari (2006)}
+  \item{\code{adj_uci}}{Upper confidence limit for age-adusted rate per Tiwari.}
   \item{\code{crude_rate}}{Crude (unadjusted) rate.}
-  \item{\code{crude_lci}}{Lower confidence limit for crude rate.}
-  \item{\code{crude_uci}}{Upper confidence limit for crude rate.}
+  \item{\code{crude_lci}}{Lower confidence limit for crude rate, per Garwood (1936).}
+  \item{\code{crude_uci}}{Upper confidence limit for crude rate, per Garwood.}
   }
 }
 \description{

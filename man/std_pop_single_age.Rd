@@ -4,11 +4,13 @@
 \name{std_pop_single_age}
 \alias{std_pop_single_age}
 \title{Standard population distributions by single year of age.}
-\format{A data frame with two columns:
+\format{
+A data frame with two columns:
  \describe{
   \item{\code{age}}{Year of age from 0 to 100+}
   \item{\code{population}}{Standard population in thousands.}
-  }}
+  }
+}
 \source{
 {US Bureau of the Census} \url{https://www.census.gov/prod/1/pop/p25-1130/p251130.pdf}
 }

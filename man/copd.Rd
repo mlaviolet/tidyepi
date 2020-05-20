@@ -4,13 +4,15 @@
 \name{copd}
 \alias{copd}
 \title{COPD mortality data.}
-\format{A data table with 204 rows and 4 variables.
+\format{
+A data table with 204 rows and 4 variables.
 \describe{
   \item{\code{State}}{The 50 states plus the District of Columbia}
   \item{\code{agegroup}}{Age group 55-64, 65-74, 75-84, 85+}
   \item{\code{Deaths}}{Number of deaths}
   \item{\code{Population}}{Estimated state population}
- }}
+ }
+}
 \source{
 {CDC WONDER online database} \url{https://wonder.cdc.gov/}
 }
