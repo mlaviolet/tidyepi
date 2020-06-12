@@ -12,7 +12,7 @@ direct_adjust(
   std_pop,
   base = 1e+05,
   level = 95,
-  decimals = 1
+  decimals = 4
 )
 }
 \arguments{

@@ -76,8 +76,9 @@ reshape_for_SIR <- function(df, strata, split_var, study_group, n, pop) {
 #' library(dplyr)
 #' sir_by_year <- cancer %>%
 #'   group_by(Year) %>%
-#'   do(reshape_for_SIR(., agegroup, Sex, "Male", n, pop)) %>%
-#'   do(indirect_adjust(., study_count, study_pop, ref_count, ref_pop, decimals = 4))
+#'   group_modify(~ reshape_for_SIR(.x, agegroup, Sex, "Male", n, pop)) %>%
+#'   group_modify(~ indirect_adjust(.x, study_count, study_pop, ref_count, ref_pop))
+
 indirect_adjust <- function(df, study_count, study_pop, ref_count, ref_pop,
                            level = 95, decimals = 2) {
   df %>%
@@ -90,8 +91,8 @@ indirect_adjust <- function(df, study_count, study_pop, ref_count, ref_pop,
     mutate(sir = observed / expected,
            sir_lci = qgamma((100 - level) / 200, observed) / expected,
            sir_uci = qgamma((100 + level) / 200, observed + 1) / expected) %>%
-    mutate_at(vars(expected, starts_with("sir")), 
-              function(x) round(x, decimals)) %>%
+    mutate(across(c(expected, starts_with("sir")), 
+                  ~ round(.x, decimals))) %>%
     select(observed, everything())
   }
 

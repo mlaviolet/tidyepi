@@ -50,8 +50,8 @@ indirect adjustment.
 library(dplyr)
 sir_by_year <- cancer \%>\%
   group_by(Year) \%>\%
-  do(reshape_for_SIR(., agegroup, Sex, "Male", n, pop)) \%>\%
-  do(indirect_adjust(., study_count, study_pop, ref_count, ref_pop, decimals = 4))
+  group_modify(~ reshape_for_SIR(.x, agegroup, Sex, "Male", n, pop)) \%>\%
+  group_modify(~ indirect_adjust(.x, study_count, study_pop, ref_count, ref_pop))
 }
 \references{
 Garwood F (1936) Fiducial limits for the Poisson distribution,
