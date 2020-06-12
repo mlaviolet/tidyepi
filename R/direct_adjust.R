@@ -67,7 +67,7 @@
 #'   group_modify(~ direct_adjust(.x, agegroup, n, pop, std_pop_list$seer_pop))
 #'   
 direct_adjust <- function(df, agegroup, events, person_yrs, std_pop,
-                          base = 100000, level = 95, decimals = 1) {
+                          base = 100000, level = 95, decimals = 4) {
   # store name of age group variable as a string--need to rename to "agegroup"
   #   for joining with standard weights
   J <- 1 / length(std_pop) # correction term for computing rates and variances
@@ -76,12 +76,12 @@ direct_adjust <- function(df, agegroup, events, person_yrs, std_pop,
   # make data frame of age groups and standard population weights
   std_wgts <- std_pop %>%
     enframe(name = "agegroup", value = "wgt") %>% 
-    mutate_at("wgt", function(x) x / sum(x))
+    mutate(wgt = wgt / sum(wgt))
   # rename input variables to match argument names
   df <- df %>% 
-    rename_at(vars({{ agegroup }}), ~ "agegroup") %>% 
-    rename_at(vars({{  events  }}), ~ "events") %>% 
-    rename_at(vars({{  person_yrs }}), ~ "person_yrs")
+    rename_with( ~ "agegroup", {{ agegroup }}) %>% 
+    rename_with(~ "events", {{ events }} ) %>% 
+    rename_with(~ "person_yrs", {{ person_yrs }})
   adjusted_rate_tbl <- df %>% 
     inner_join(std_wgts, by = "agegroup") %>% 
     summarize(
@@ -98,8 +98,9 @@ direct_adjust <- function(df, agegroup, events, person_yrs, std_pop,
                             scale = adj_rate_var_corr / adj_rate_corr))
   # TEST HERE
   crude_rate_tbl <- df %>% 
+    # summarize(across(c(events, person_yrs)), sum) %>% 
     summarize(events = sum(events),
-              person_yrs = sum(person_yrs)) %>% 
+              person_yrs = sum(person_yrs)) %>%
     mutate(crude_rate = events / person_yrs,
            crude_lci = qgamma(alpha_lci, events) / person_yrs,
            crude_uci = qgamma(alpha_uci, events + 1) / person_yrs)  
