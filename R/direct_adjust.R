@@ -98,16 +98,14 @@ direct_adjust <- function(df, agegroup, events, person_yrs, std_pop,
                             scale = adj_rate_var_corr / adj_rate_corr))
   # TEST HERE
   crude_rate_tbl <- df %>% 
-    # summarize(across(c(events, person_yrs)), sum) %>% 
-    summarize(events = sum(events),
-              person_yrs = sum(person_yrs)) %>%
+    summarize(across(c(events, person_yrs), sum)) %>% 
     mutate(crude_rate = events / person_yrs,
            crude_lci = qgamma(alpha_lci, events) / person_yrs,
            crude_uci = qgamma(alpha_uci, events + 1) / person_yrs)  
   bind_cols(adjusted_rate_tbl, crude_rate_tbl) %>% 
     select(-matches("(corr|var)$")) %>%
-    mutate_at(vars(matches("^(adj|crude)")),
-              function(x) round(base * x, decimals)) %>%
+    mutate(across(matches("^(adj|crude)"), 
+                  ~ round(base * .x, decimals))) %>%
     select(events, person_yrs, matches("^(adj|crude)"))
   }
 
