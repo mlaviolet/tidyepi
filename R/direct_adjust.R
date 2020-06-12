@@ -76,12 +76,16 @@ direct_adjust <- function(df, agegroup, events, person_yrs, std_pop,
   # make data frame of age groups and standard population weights
   std_wgts <- std_pop %>%
     enframe(name = "agegroup", value = "wgt") %>% 
-    mutate(wgt = wgt / sum(wgt))
+    mutate(agegroup = factor(agegroup),
+           wgt = wgt / sum(wgt))
   # rename input variables to match argument names
   df <- df %>% 
-    rename_with( ~ "agegroup", {{ agegroup }}) %>% 
-    rename_with(~ "events", {{ events }} ) %>% 
+    rename_with(~ "agegroup", {{ agegroup }}) %>% 
+    rename_with(~ "events", {{ events }}) %>% 
     rename_with(~ "person_yrs", {{ person_yrs }})
+  # change names of standard population age groups to match levels of
+  #   input data
+  levels(std_wgts$agegroup) <- levels(df$agegroup)
   adjusted_rate_tbl <- df %>% 
     inner_join(std_wgts, by = "agegroup") %>% 
     summarize(
