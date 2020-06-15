@@ -56,11 +56,6 @@
 #'               std_pop = c(23961, 18136, 12315, 4259), parent = "United States") 
 #' @export
 #' 
-# test function call
-# test_dat <- 
-#   correlated_rates(asthma_dat, county, agegroup, n, pop,
-#                    std_pop_list$dist_01, parent = "New Hampshire", 
-#                    base = 10000)
 correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
                              parent = "Parent Region", base = 100000, 
                              level = 95, dec_rate = 1, dec_ratio = 2) {
@@ -86,7 +81,7 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     mutate(region = parent) %>%
     rename_with(~ region_name, region)
   
-  # pull vector of parent region adjusted rate
+  # pull parent region adjusted rate for computing rate ratios
   parent_adj_rate <- parent_region_rate %>% 
     pull(adj_rate)
   
@@ -107,7 +102,7 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
 
   # adjusted rate within subregions
   adj_rate_subregions <- full_dat %>%
-    group_by_at(vars(region_name)) %>%
+    group_by(!!sym(region_name)) %>%
     group_modify(~ direct_adjust(.x, agegroup, !!sym(events_name), 
                                  !!sym(pop_name), std_pop, base = base, 
                                  level = level, decimals = Inf)) %>% 
@@ -146,15 +141,10 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
                            ratio_uci < 1 ~ "Lower",
                            TRUE ~ "Similar")) %>% 
     bind_rows(parent_region_rate) %>% 
-    mutate_at(vars(starts_with("adj")), function(x) round(x, dec_rate)) %>% 
-    mutate_at(vars(starts_with("ratio")), function(x) round(x, dec_ratio))
+    mutate(across(starts_with("adj"), ~ round(.x, dec_rate))) %>% 
+    mutate(across(starts_with("ratio"), ~ round(.x, dec_ratio)))
   }
 
 
-
-# state_dat <- 
-#   correlated_rates(copd_by_state, State, agegroup, Deaths, 
-#                    Population, c(23961, 18136, 12315, 4259),
-#                    parent = "United States") 
 
 
