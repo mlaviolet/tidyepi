@@ -30,25 +30,23 @@
 #' @references Tiwari RC et al. (2010) Interval estimation for ratios of correlated age-adjusted rates.
 #' Journal of Data Science 8:471-482. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3279758/
 #' 
+#' @importFrom dplyr across
 #' @importFrom dplyr bind_rows
 #' @importFrom dplyr case_when
 #' @importFrom dplyr contains
-#' @importFrom dplyr do 
 #' @importFrom dplyr ends_with
 #' @importFrom dplyr everything
 #' @importFrom dplyr group_by
-#' @importFrom dplyr group_by_at
+#' @importFrom dplyr group_modify
 #' @importFrom dplyr inner_join
 #' @importFrom dplyr matches
 #' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
 #' @importFrom dplyr pull
 #' @importFrom dplyr rename
-#' @importFrom dplyr rename_at
+#' @importFrom dplyr rename_with
 #' @importFrom dplyr select
 #' @importFrom dplyr starts_with
 #' @importFrom dplyr summarize
-#' @importFrom dplyr vars
 #' @importFrom purrr reduce
 #' @examples
 #' # Age-adjusted COPD mortality rates by state with ratio to US rate and confidence intervals, 2016
@@ -95,7 +93,7 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
 
   # proportion of population outside subregion
   prop_outregions <- full_dat %>%
-    group_by_at(vars(region_name)) %>%
+    group_by(!!sym(region_name)) %>%
     summarize(pop = sum(parent_pop), pop_c = sum(pop_c)) %>%
     mutate(prop_c = pop_c / pop) %>% 
     select(-matches("^pop"))
@@ -111,7 +109,7 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
   
   # adjusted rate outside subregions
   adj_rate_outregions <- full_dat %>%
-    group_by_at(vars(region_name)) %>%
+    group_by(!!sym(region_name)) %>%
     group_modify(~ direct_adjust(.x, agegroup, n_c, pop_c, std_pop, 
                      base = base, level = level, decimals = Inf)) %>% 
     mutate(adj_rate_var = adj_rate_stderr ^ 2) %>% 

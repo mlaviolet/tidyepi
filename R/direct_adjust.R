@@ -32,15 +32,17 @@
 #' cancer rates. Statistical Methods in Medical Research 15:547-569. 
 #' https://www.ncbi.nlm.nih.gov/pubmed/17260923
 #'
+#' @importFrom dplyr across
+#' @importFrom dplyr bind_cols
 #' @importFrom dplyr group_by
+#' @importFrom dplyr group_modify
 #' @importFrom dplyr inner_join
 #' @importFrom dplyr matches
 #' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
 #' @importFrom dplyr pull
+#' @importFrom dplyr rename_with
 #' @importFrom dplyr select
 #' @importFrom dplyr summarize
-#' @importFrom dplyr vars
 #' @importFrom tibble enframe
 #' @export
 #'
