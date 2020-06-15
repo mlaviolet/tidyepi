@@ -35,7 +35,6 @@
 #' @importFrom dplyr case_when
 #' @importFrom dplyr contains
 #' @importFrom dplyr ends_with
-#' @importFrom dplyr everything
 #' @importFrom dplyr group_by
 #' @importFrom dplyr group_modify
 #' @importFrom dplyr inner_join

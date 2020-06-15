@@ -15,10 +15,10 @@
 #'   \item{\code{ref_count}}{Events in referent group}
 #'   \item{\code{ref_pop}}{Person-years at risk in referent group}}
 #' @importFrom dplyr mutate
-#' @importFrom tidyr gather
 #' @importFrom tidyr unite
 #' @importFrom dplyr select
-#' @importFrom tidyr spread
+#' @importFrom tidyr pivot_longer
+#' @importFrom tidyr pivot_wider
 #' @export
 #'
 reshape_for_SIR <- function(df, strata, split_var, study_group, n, pop) {
@@ -31,10 +31,13 @@ reshape_for_SIR <- function(df, strata, split_var, study_group, n, pop) {
     mutate(group_id = if_else({{ split_var }} == study_group, 0, 1)) %>%
     # reshape into columns strata variable, study_count, study_pop,
     #   ref_count, ref_pop
-    gather(key, value, {{ n }}, {{ pop }}) %>%
+    pivot_longer(c({{ n }}, {{ pop }}), 
+                 names_to = "key", values_to = "value") %>%
+    # gather(key, value, {{ n }}, {{ pop }}) %>%
     unite("group_id", group_id, key) %>%
     select({{ strata }}, group_id, value)  %>%
-    spread(group_id, value) %>%
+    pivot_wider(names_from = group_id, values_from = value) %>% 
+    # spread(group_id, value) %>%
     setNames(c(names(.)[1],
                "study_count", "study_pop", "ref_count", "ref_pop"))
   }
@@ -61,13 +64,11 @@ reshape_for_SIR <- function(df, strata, split_var, study_group, n, pop) {
 #'   \item{\code{sir_uci}}{Upper confidence limit of SIR by Garwood}}
 #' @references Garwood F (1936) Fiducial limits for the Poisson distribution,
 #'  Biometrika 28:437-442.
-#' @importFrom dplyr everything
 #' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
+#' @importFrom dplyr relocate
 #' @importFrom dplyr select
 #' @importFrom dplyr starts_with
 #' @importFrom dplyr summarize
-#' @importFrom dplyr vars
 #' @export
 #'
 #' @examples
@@ -93,7 +94,7 @@ indirect_adjust <- function(df, study_count, study_pop, ref_count, ref_pop,
            sir_uci = qgamma((100 + level) / 200, observed + 1) / expected) %>%
     mutate(across(c(expected, starts_with("sir")), 
                   ~ round(.x, decimals))) %>%
-    select(observed, everything())
+    relocate(observed)
   }
 
 # need usethis::use_tidy_eval()

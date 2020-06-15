@@ -20,11 +20,11 @@
 #' @references Garwood F (1936) Fiducial limits for the Poisson distribution,
 #'  Biometrika 28:437-442.
 #'  
+#' @importFrom dplyr across
 #' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
 #' @export
 #' 
-#' @note Confidence limits for crude rates are copmuted using the method of 
+#' @note Confidence limits for crude rates are computed using the method of 
 #' Garwood (1936).
 #' 
 #' @examples
@@ -45,8 +45,9 @@ crude_rate <- function(df, events, person_yrs, base = 100000, level = 95,
            rate_lci = qgamma(alpha_lci, {{ events }}) / {{ person_yrs }},
            rate_uci = 
              qgamma(alpha_uci, {{ events }} + 1) / {{ person_yrs }}) %>%
-    mutate_at(vars(starts_with("rate")),
-              function(x) round(base * x, decimals))
+    mutate(across(starts_with("rate"), ~ round(base * .x, decimals)))
+    # mutate_at(vars(starts_with("rate")),
+    #           function(x) round(base * x, decimals))
   }
 
 # need usethis::use_tidy_eval()

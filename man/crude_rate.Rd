@@ -34,7 +34,7 @@ A data table with the following fields:
 Crude or age-specific rates.
 }
 \note{
-Confidence limits for crude rates are copmuted using the method of 
+Confidence limits for crude rates are computed using the method of 
 Garwood (1936).
 }
 \examples{
