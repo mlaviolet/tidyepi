@@ -84,8 +84,7 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
                   base = base) %>%
     select(events, person_yrs, adj_rate, adj_lci, adj_uci) %>%
     mutate(region = parent) %>%
-    select(region, everything()) %>% 
-    rename_at(vars(1), ~ region_name)
+    rename_with(~ region_name, region)
   
   # pull vector of parent region adjusted rate
   parent_adj_rate <- parent_region_rate %>% 
@@ -112,8 +111,6 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     group_modify(~ direct_adjust(.x, agegroup, !!sym(events_name), 
                                  !!sym(pop_name), std_pop, base = base, 
                                  level = level, decimals = Inf)) %>% 
-    # do(direct_adjust(., agegroup, !!sym(events_name), !!sym(pop_name), std_pop, 
-    #                  base = base, level = level, decimals = Inf)) %>% 
     mutate(adj_rate_var = adj_rate_stderr ^ 2) %>% 
     select(-adj_rate_stderr, -starts_with("crude"))
   
@@ -122,8 +119,6 @@ correlated_rates <- function(df, region, agegroup, events, person_yrs, std_pop,
     group_by_at(vars(region_name)) %>%
     group_modify(~ direct_adjust(.x, agegroup, n_c, pop_c, std_pop, 
                      base = base, level = level, decimals = Inf)) %>% 
-    # do(direct_adjust(., agegroup, n_c, pop_c, std_pop, 
-    #                  base = base, level = level, decimals = Inf)) %>% 
     mutate(adj_rate_var = adj_rate_stderr ^ 2) %>% 
     select(-adj_rate_stderr, -starts_with("crude"))
   
