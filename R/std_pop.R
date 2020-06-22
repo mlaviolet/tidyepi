@@ -30,7 +30,7 @@
 #'   \item{\code{population}}{Standard population in thousands.}
 #'   }
 #' 
-#' @references US Bureau of the Census. Population projections of the United States by age, sex, race, and Hispanic origin: 1995 to 2050 (P25-1130). February 1996. 
+#' @references US Bureau of the Census. Population projections of the United States by age, sex, race, and Hispanic origin: 1995 to 2050 (P25-1130). February 1996, pp. 52-53.
 #' 
 #' @references National Cancer Institute, Surveillance, Epidemiology, and End Results Progam. Standard populations (millions) for age-adjustment.
 #' https://seer.cancer.gov/stdpopulations

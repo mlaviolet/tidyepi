@@ -21,7 +21,7 @@ data(std_pop_single_age)
 Standard 2000 populations for direct age adjustment, from National Center for Health Statistics
 }
 \references{
-US Bureau of the Census. Population projections of the United States by age, sex, race, and Hispanic origin: 1995 to 2050 (P25-1130). February 1996.
+US Bureau of the Census. Population projections of the United States by age, sex, race, and Hispanic origin: 1995 to 2050 (P25-1130). February 1996, pp. 52-53.
 
 National Cancer Institute, Surveillance, Epidemiology, and End Results Progam. Standard populations (millions) for age-adjustment.
 https://seer.cancer.gov/stdpopulations
