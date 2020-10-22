@@ -3,8 +3,10 @@
 
 df <- data.frame(id = c("A", "B", "C"),  x = c(0, 10, 10), 
                  n = c(100, 400, 400))
+# GROUPING BY RECORD ID WOULD OCCUR OUTSIDE WORKING FUNCTION
+# nest() and unnest() would probably not be needed
+# key is using tidy() to put test results in data frame
 df %>%
-  # NEED TO ADD UNIQUE ID to GROUPING
   group_by(id, x, n) %>%
   nest() %>%
   mutate(ptest = map(data, ~ tidy(poisson.exact(x, n)))) %>%
