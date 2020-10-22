@@ -4,7 +4,7 @@
 df <- data.frame(id = c("A", "B", "C"),  x = c(0, 10, 10), 
                  n = c(100, 400, 400))
 df %>%
-  # NEED TO ADD UNI
+  # NEED TO ADD UNIQUE ID to GROUPING
   group_by(id, x, n) %>%
   nest() %>%
   mutate(ptest = map(data, ~ tidy(poisson.exact(x, n)))) %>%
