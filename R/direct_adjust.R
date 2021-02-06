@@ -85,8 +85,8 @@ direct_adjust <- function(df, agegroup, events, person_yrs, std_pop,
     rename_with(~ "agegroup", {{ agegroup }}) %>% 
     rename_with(~ "events", {{ events }}) %>% 
     rename_with(~ "person_yrs", {{ person_yrs }})
-  if(length(levels(df$agegroup)) != length(std_pop))
-    stop("Number of age groups in standard population doesn't match data")
+  # if(length(levels(df$agegroup)) != length(std_pop))
+  #   stop("Number of age groups in standard population doesn't match data")
   # change names of standard population age groups to match levels of
   #   input data
   levels(std_wgts$agegroup) <- levels(df$agegroup)
