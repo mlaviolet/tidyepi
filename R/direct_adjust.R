@@ -89,7 +89,9 @@ direct_adjust <- function(df, agegroup, events, person_yrs, std_pop,
   #   stop("Number of age groups in standard population doesn't match data")
   # change names of standard population age groups to match levels of
   #   input data
-  levels(std_wgts$agegroup) <- levels(df$agegroup)
+  # bug fix per Will Moir
+  # levels(std_wgts$agegroup) <- levels(df$agegroup)
+  levels(std_wgts$agegroup) <- levels(droplevels(df$agegroup))
   adjusted_rate_tbl <- df %>% 
     inner_join(std_wgts, by = "agegroup") %>% 
     summarize(
