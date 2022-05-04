@@ -32,8 +32,8 @@
 #' library(dplyr)
 #' cancer %>% 
 #'   group_by(Year) %>% 
-#'   summarize_at(c("n", "pop"), sum) %>% 
-#'   do(crude_rate(., n, pop))
+#'   summarize(across(c(n, pop), sum)) %>% 
+#'   group_modify(~ crude_rate(.x, n, pop))
 #' 
 crude_rate <- function(df, events, person_yrs, base = 100000, level = 95,
                        decimals = 1) {
@@ -46,8 +46,6 @@ crude_rate <- function(df, events, person_yrs, base = 100000, level = 95,
            rate_uci = 
              qgamma(alpha_uci, {{ events }} + 1) / {{ person_yrs }}) %>%
     mutate(across(starts_with("rate"), ~ round(base * .x, decimals)))
-    # mutate_at(vars(starts_with("rate")),
-    #           function(x) round(base * x, decimals))
   }
 
 # need usethis::use_tidy_eval()

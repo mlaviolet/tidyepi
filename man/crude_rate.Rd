@@ -42,8 +42,8 @@ Garwood (1936).
 library(dplyr)
 cancer \%>\% 
   group_by(Year) \%>\% 
-  summarize_at(c("n", "pop"), sum) \%>\% 
-  do(crude_rate(., n, pop))
+  summarize(across(c(n, pop), sum)) \%>\% 
+  group_modify(~ crude_rate(.x, n, pop))
 
 }
 \references{
