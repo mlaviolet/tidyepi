@@ -69,7 +69,7 @@ cancer_by_year_sex <- cancer \%>\%
 # same rates by year
 cancer_by_year <- cancer \%>\%
   group_by(Year, agegroup) \%>\%
-  summarize(n = sum(n), pop = sum(pop)) \%>\% 
+  summarize(across(c(n, pop), sum)) \%>\% 
   group_modify(~ direct_adjust(.x, agegroup, n, pop, std_pop_list$seer_pop))
   
 }
